@@ -1,0 +1,8 @@
+
+Reegisters:
+rx0-rx28
+rf0-rf5
+
+rf0:
+	Bits 2-0: Mode (0b00 x64, 0b01 Safety, 0b10 Critical, 0b11 x32 Emulation)
+	Bit 8: Paging Enable
