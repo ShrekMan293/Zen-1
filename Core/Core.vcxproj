@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\boot.cpp" />
+    <ClCompile Include="src\cpu.cpp" />
+    <ClCompile Include="src\mobo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\boot.h" />
+    <ClInclude Include="inc\cpu.h" />
+    <ClInclude Include="inc\mobo.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -71,7 +81,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\engan\Desktop\Nathan\Zen-1\Core\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <ExternalIncludePath>C:\Users\engan\Desktop\Nathan\Zen-1\Core\inc;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\engan\Desktop\Nathan\Zen-1\Core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,16 +141,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\bios.cpp" />
-    <ClCompile Include="src\cpu.cpp" />
-    <ClCompile Include="src\mobo.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="inc\bios.h" />
-    <ClInclude Include="inc\cpu.h" />
-    <ClInclude Include="inc\mobo.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

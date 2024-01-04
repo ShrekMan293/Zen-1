@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bios.cpp">
+    <ClCompile Include="src\boot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\mobo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\cpu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\bios.h">
+    <ClInclude Include="inc\boot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inc\mobo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

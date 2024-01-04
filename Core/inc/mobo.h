@@ -1,39 +1,38 @@
 #pragma once
-#include <Windows.h>
+#include <iostream>
+#include <thread>
 
-extern HANDLE moboThread;
+enum pm {	// Power Mode
+	IDLE, LOW,
+	AVG, HIGH
+};
 
-// CPU Cores
-extern HANDLE core0Thread;
-extern HANDLE core1Thread;
-extern HANDLE core2Thread;
-extern HANDLE core3Thread;
-extern HANDLE core4Thread;
-extern HANDLE core5Thread;
-extern HANDLE core6Thread;
-extern HANDLE core7Thread;
+struct device {
+	pm power;
+	uint16_t base;		// Address
+	uint16_t max;		// Address
+	bool DMA;
+};
 
-// Components
-extern HANDLE usbAThread;
-extern HANDLE usbCThread;
-extern HANDLE blue0Thread1;
-extern HANDLE blue0Thread2;
-extern HANDLE blue1Thread1;
-extern HANDLE blue1Thread2;
+struct mobo {
+	device* devices;
+	std::thread* device_threads;
+};
 
-extern HANDLE rtcThread;
-extern HANDLE pitThread1;
-extern HANDLE pitThread2;
-extern HANDLE pitThread3;
-extern HANDLE pitThread4;
+void initComponents();
 
-extern HANDLE storageThreadIn;
-extern HANDLE storageThreadOut;
-extern HANDLE gpuThreadIn;
-extern HANDLE gpuThreadOut;
-extern HANDLE audioThreadIn;
-extern HANDLE audioThreadOut;
 
-LPTHREAD_START_ROUTINE moboThreadFunc();
-
-const LPTHREAD_START_ROUTINE mobo = moboThreadFunc();
+/*
+* Devices:
+*	Motherboard Controller
+*	Storage
+*	Audio
+*	Graphics
+*	Timer
+*	RTC
+*	USB Controller
+*	Bluetooth Controller
+*	Random Number Gen
+*	Network (Will not implement yet)
+*	SCU
+*/

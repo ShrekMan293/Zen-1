@@ -1,0 +1,34 @@
+ALU:
+	add, sub, mul, div,
+	shl, shr, and, or,
+	not, nor, xor, cmp,
+Memory:
+	mov, jmp, call, ret,
+	push, pop, pusha, popa,
+	popi, iret
+Conditionals:
+	jne, jc, jl, jle,
+	jge, jo, je, rfl,				// Read flags
+I/O:
+	in, out, int, hlt,
+	cli, sti
+
+
+Microinstruction:
+Bit 0: 64 or 32 bit (32 is 0)
+Bit 1: ALU Instruction?
+Bit 2: Op Count (value + 1)
+Bit 3: R/W Op 1
+Bit 4: R/W Op 2
+Bit 5: If ALU, logic or math. If not, internal or I/O
+Bit 6: Read AND Write operands
+Bit 7: Immediate Value?
+Bits 8-11: Offset in grouping
+
+Microcode:
+
+fetch, add, sub, mul,
+div, shl, shr, and,
+or, not, nor, xor, cmp
+set, load, store, I/O,
+hlt
