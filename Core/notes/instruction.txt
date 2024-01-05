@@ -13,17 +13,23 @@ I/O:
 	in, out, int, hlt,
 	cli, sti
 
-
 Microinstruction:
-Bit 0: 64 or 32 bit (32 is 0)
-Bit 1: ALU Instruction?
-Bit 2: Op Count (value + 1)
-Bit 3: R/W Op 1
-Bit 4: R/W Op 2
-Bit 5: If ALU, logic or math. If not, internal or I/O
-Bit 6: Read AND Write operands
-Bit 7: Immediate Value?
-Bits 8-11: Offset in grouping
+Bit 11: 64 or 32 bit (32 is 0)
+Bit 10: ALU Instruction?
+Bit 9: Op Count (value + 1)
+Bit 8: R/W Op 1? (op 1 is always read AND write if set) (if set to 0 its assumed there are no ops)
+Bit 7: R/W Op 2?
+Bit 6: If ALU, logic or math (logic is 1). If not, internal or I/O (I/O is 0)
+Bit 5: Read AND Write op2?
+Bit 4: Immediate Value?
+Bits 3-0: Offset in grouping
+
+Memory instructions get an extra two bits for operands:
+0b00: Op1 and Op2 are imm
+0b01: Op1 is imm, Op2 is reg
+0b10: Op1 is reg, Op2 is imm
+0b11: Op1 and Op2 are reg
+These would be bits 13-12;
 
 Microcode:
 

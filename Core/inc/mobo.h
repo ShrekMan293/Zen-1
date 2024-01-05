@@ -14,10 +14,12 @@ struct device {
 	bool DMA;
 };
 
-struct mobo {
+struct mobo_t {
 	device* devices;
 	std::thread* device_threads;
 };
+
+
 
 void initComponents();
 
