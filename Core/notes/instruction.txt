@@ -1,3 +1,5 @@
+Instructions:
+	nop,
 ALU:
 	add, sub, mul, div,
 	shl, shr, and, or,
@@ -8,7 +10,8 @@ Memory:
 	popi, iret
 Conditionals:
 	jne, jc, jl, jle,
-	jge, jo, je, rfl,				// Read flags
+	jg, jge, jo, je,
+	jnc, rfl,				// Read flags
 I/O:
 	in, out, int, hlt,
 	cli, sti
@@ -24,7 +27,7 @@ Bit 5: Read AND Write op2?
 Bit 4: Immediate Value?
 Bits 3-0: Offset in grouping
 
-Memory instructions get an extra two bits for operands:
+Memory and Conditional instructions get an extra two bits for operands:
 0b00: Op1 and Op2 are imm
 0b01: Op1 is imm, Op2 is reg
 0b10: Op1 is reg, Op2 is imm
@@ -36,5 +39,5 @@ Microcode:
 fetch, add, sub, mul,
 div, shl, shr, and,
 or, not, nor, xor, cmp
-set, load, store, I/O,
+set, load, store, gate,		// Gate sends a signal to a specified gate
 hlt

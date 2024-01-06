@@ -29,6 +29,9 @@ struct cpu_controller {
 void initCPU();
 
 // Instructions
+// Many instructions are not actually dependent on the mode, but the CPU requires all instructions to be compatible
+constexpr auto NOP64 = 0b100001000000;
+constexpr auto NOP32 = 0b000001000000;
 
 // Math
 constexpr auto ADD64 = 0b111110000000;
@@ -99,3 +102,55 @@ constexpr auto IRET64 = 0b00100001001001;
 constexpr auto IRET32 = 0b00000001001001;
 
 // Conditional
+constexpr auto RTI_JNE64 = 0b10110101010000;
+constexpr auto RTI_JNE32 = 0b10010101010000;
+constexpr auto RTR_JNE64 = 0b11110101010000;
+constexpr auto RTR_JNE32 = 0b11010101010000;
+constexpr auto RTI_JC64 = 0b10110101010001;
+constexpr auto RTI_JC32 = 0b10010101010001;
+constexpr auto RTR_JC64 = 0b11110101010001;
+constexpr auto RTR_JC32 = 0b11010101010001;
+constexpr auto RTI_JL64 = 0b10110101010010;
+constexpr auto RTI_JL32 = 0b10010101010010;
+constexpr auto RTR_JL64 = 0b11110101010010;
+constexpr auto RTR_JL32 = 0b11010101010010;
+constexpr auto RTI_JLE64 = 0b10110101010011;
+constexpr auto RTI_JLE32 = 0b10010101010011;
+constexpr auto RTR_JLE64 = 0b11110101010011;
+constexpr auto RTR_JLE32 = 0b11010101010011;
+constexpr auto RTI_JG64 = 0b10110101010100;
+constexpr auto RTI_JG32 = 0b10010101010100;
+constexpr auto RTR_JG64 = 0b11110101010100;
+constexpr auto RTR_JG32 = 0b11010101010100;
+constexpr auto RTI_JGE64 = 0b10110101010101;
+constexpr auto RTI_JGE32 = 0b10010101010101;
+constexpr auto RTR_JGE64 = 0b11110101010101;
+constexpr auto RTR_JGE32 = 0b11010101010101;
+constexpr auto RTI_JO64 = 0b10110101010110;
+constexpr auto RTI_JO32 = 0b10010101010110;
+constexpr auto RTR_JO64 = 0b11110101010110;
+constexpr auto RTR_JO32 = 0b11010101010110;
+constexpr auto RTI_JE64 = 0b10110101010111;
+constexpr auto RTI_JE32 = 0b10010101010111;
+constexpr auto RTR_JE64 = 0b11110101010111;
+constexpr auto RTR_JE32 = 0b11010101010111;
+constexpr auto RTI_JNC64 = 0b10110101011000;
+constexpr auto RTI_JNC32 = 0b10010101011000;
+constexpr auto RTR_JNC64 = 0b11110101011000;
+constexpr auto RTR_JNC32 = 0b11010101011000;
+constexpr auto RFL64 = 0b100111001001;	// Same as 32 bit but CPU requires compatible instructions
+constexpr auto RFL32 = 0b000111001001;
+
+// I/O
+constexpr auto IN64 = 0b101110000000;
+constexpr auto IN32 = 0b001110000000;
+constexpr auto OUT64 = 0b101110000001;
+constexpr auto OUT32 = 0b001110000001;
+constexpr auto INT_64 = 0b100100010010;
+constexpr auto INT_32 = 0b000100010010;
+constexpr auto HLT64 = 0b100000000011;
+constexpr auto HLT32 = 0b000000000011;
+constexpr auto CLI64 = 0b100000000100;
+constexpr auto CLI32 = 0b000000000100;
+constexpr auto STI64 = 0b100000000101;
+constexpr auto STI32 = 0b000000000101;
