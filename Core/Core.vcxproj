@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClCompile Include="src\boot.cpp" />
     <ClCompile Include="src\cpu.cpp" />
+    <ClCompile Include="src\memory.cpp" />
     <ClCompile Include="src\mobo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\boot.h" />
     <ClInclude Include="inc\cpu.h" />
+    <ClInclude Include="inc\memory.h" />
     <ClInclude Include="inc\mobo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

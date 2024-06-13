@@ -4,8 +4,9 @@ int main(int argc, char** argv) {
 	//initComponents();
 
 	float memorySize = 0;
-
-	if (argv[1] == "m1") memorySize = 0.5;
+	
+	if (argv[1] == "m0") memorySize = 0.25;
+	else if (argv[1] == "m1") memorySize = 0.5;
 	else if (argv[1] == "m2") memorySize = 1;
 	else if (argv[1] == "m3") memorySize = 2;
 	else if (argv[1] == "m4") memorySize = 4;

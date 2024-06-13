@@ -48,7 +48,6 @@ cli (0b000000000101) (0x0005)
 sti (0b000000000110) (0x0006)
 
 PANIC (0b111111111111) (0x0FFF)
-FILLER (0b111100000000) (0x0F00)
 
 Instruction Opcode Breakdown:
 Bit 11: Reserved; For Internal operations it is whether op 1 (recipient) is register (1) or memory (0) 

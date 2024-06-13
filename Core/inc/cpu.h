@@ -1,23 +1,8 @@
 #pragma once
+#include "memory.h"
 #include <thread>
 
 using std::thread;
-
-typedef uint8_t byte;
-typedef unsigned short word;
-
-struct memory_struct {
-	byte* mem1;
-	byte* mem2;
-	byte* mem3;
-	byte* mem4;
-	byte* mem5;
-	byte* mem6;
-	byte* mem7;
-	byte* mem8;
-	uint64_t size;
-	float sizeGB;
-};
 
 enum pm {	// Power Mode
 	DOWN, IDLE, RUNNING
@@ -50,7 +35,5 @@ struct cpu_controller {
 };
 
 extern cpu_controller cpu;
-extern memory_struct memory;	// 8 GB
 
 void initCPU();
-void initMem(float memorySize);
