@@ -7,6 +7,7 @@ enum pm {	// Power Mode
 	AVG, HIGH
 };
 
+
 struct device {
 	pm power;
 	uint16_t base;		// Address
@@ -31,10 +32,10 @@ void initComponents();
 *	Audio
 *	Graphics
 *	Timer
-*	RTC
+*	RTC (Real Time Controller)
 *	USB Controller
 *	Bluetooth Controller
 *	Random Number Gen
 *	Network (Will not implement yet)
-*	SCU
+*	SCU (System Control Unit)
 */

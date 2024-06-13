@@ -1,43 +1,62 @@
 Instructions:
-	nop,
-ALU:
-	add, sub, mul, div,
-	shl, shr, and, or,
-	not, nor, xor, cmp,
-Memory:
-	mov, jmp, call, ret,
-	push, pop, pusha, popa,
-	popi, iret
-Conditionals:
-	jne, jc, jl, jle,
-	jg, jge, jo, je,
-	jnc, rfl,				// Read flags
-I/O:
-	in, out, int, hlt,
-	cli, sti
 
-Microinstruction:
-Bit 11: 64 or 32 bit (32 is 0)
+ALU:
+add (0b011110010000) (0x0790)
+sub (0b011110010001) (0x0791)
+mul (0b011110010010) (0x0792)
+div (0b011110010011) (0x0793)
+shl (0b011110010100) (0x0794)
+shr (0b011110010100) (0x0795)
+and (0b011111010110) (0x07D6)
+or  (0b011111010111) (0x07D7)
+not (0b011111011000) (0x07D8)
+nor (0b011111011001) (0x07D9)
+xor (0b011111011010) (0x07DA)
+cmp (0b011111011011) (0x07DB)
+
+Memory: // BITS 11 AND 4 VARY DEPENDING ON THE OPERANDS
+mov   (0b001111000000) (0x0150)
+jmp	  (0b000101010001) (0x0151)
+call  (0b000101010010) (0x0152)
+ret	  (0b000001000011) (0x0043)
+push  (0b000101010100) (0x0154)
+pop   (0b000101010101) (0x0155)
+pusha (0b000001000110) (0x0046)
+popa  (0b000101010111) (0x0157)
+popi  (0b000101011000) (0x0158)
+iret  (0b000001001001) (0x0049)
+
+Conditionals:	// BITS 11 AND 4 VARY DEPENDING ON THE OPERANDS
+jne (0b000101000000) (0x0140)
+jc	(0b000101000001) (0x0141)
+jl	(0b000101000010) (0x0142)
+jle (0b000101000011) (0x0143)
+jg	(0b000101000100) (0x0144)
+jge (0b000101000101) (0x0145)
+jo	(0b000101000110) (0x0146)
+je	(0b000101000111) (0x0147)
+jnc	(0b000101001000) (0x0148)
+rfl	(0b000101001001) (0x0149)
+
+I/O:
+nop (0b000000000000) (0x0000)
+in	(0b001110010001) (0x0391)
+out	(0b001110110010) (0x03F2)
+int (0b000100010011) (0x0113)
+hlt	(0b000000000100) (0x0004)
+cli (0b000000000101) (0x0005)
+sti (0b000000000110) (0x0006)
+
+PANIC (0b111111111111) (0x0FFF)
+FILLER (0b111100000000) (0x0F00)
+
+Instruction Opcode Breakdown:
+Bit 11: Reserved; For Internal operations it is whether op 1 (recipient) is register (1) or memory (0) 
 Bit 10: ALU Instruction?
 Bit 9: Op Count (value + 1)
-Bit 8: R/W Op 1? (op 1 is always read AND write if set) (if set to 0 its assumed there are no ops)
-Bit 7: R/W Op 2?
+Bit 8: Access Op 1? (op 1 is always read AND write if set) (if set to 0 its assumed there are no ops)
+Bit 7: Op 2? (Read is always set)
 Bit 6: If ALU, logic or math (logic is 1). If not, internal or I/O (I/O is 0)
 Bit 5: Read AND Write op2?
-Bit 4: Immediate Value?
+Bit 4: Immediate Value? For Internal Operations it is whether op 2 (data) is register (1) or immediate value (0)
 Bits 3-0: Offset in grouping
-
-Memory and Conditional instructions get an extra two bits for operands:
-0b00: Op1 and Op2 are imm
-0b01: Op1 is imm, Op2 is reg
-0b10: Op1 is reg, Op2 is imm
-0b11: Op1 and Op2 are reg
-These would be bits 13-12;
-
-Microcode:
-
-fetch, add, sub, mul,
-div, shl, shr, and,
-or, not, nor, xor, cmp
-set, load, store, gate,		// Gate sends a signal to a specified gate
-hlt
