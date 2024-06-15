@@ -3,15 +3,15 @@ Motherboard:
 	just handles interrupts and I/O
 
 Storage:
-	0x4D00: Storage Information Block (168 bits)
-	0x4D0F: Status Port
+	0x4D00: Memory Address to poll for Storage Command Information Block (SCIP)
+	0x4D08: Status Port
 
 	Statuses:
 	0x10: BUSY	// Doing something
 	0x20: IDLE	// Not doing something but not available
 	0x30: READY	// Open for commands
 	0x40: DRQ	// Requesting data
-	0x80: SIBINV	// Invalid Storage Information Block
+	0x80: INVC	// Invalid Command
 	0x90: DF	// Disk Failure
 	0xA0: BS	// Bad Sector
 	0xB0: INVS	// Invalid Sector
@@ -26,7 +26,7 @@ Storage:
 	Write Sectors (0x40)
 	Read Sectors with Retry (0xC0)
 	Write Sectors with Retry (0xD0)
-	Disk Information (0xEC)
+	Disk Size (0xEC)
 	Clear Disk (0xFA)	// Clears all 
 	Toggle Disk State (0xFF) (On, Off) (THIS IS NOT A POWER MODE, THE DISK WILL STILL BE RUNNING IT JUST PAUSES IT)
 
@@ -37,7 +37,7 @@ Storage:
 	Bits 63-0: Memory Address
 
 Audio:
-	0x3CE0: Audio Information Block
+	0x3CE0: Memory Address to poll for Audio Information Block (AIP)
 
 	Modes:
 	0b00: Mono 44100 samples per second per channel, 16 bit depth
@@ -51,7 +51,8 @@ Audio:
 
 Graphics:
 	0xD200: Index Register
-	0xD201: Data Register
+	0xD201: 8 Bit Data Register
+	0xD202: 16 Bit Data Register
 
 	Modes:
 	0x00: 16 FPS
@@ -62,6 +63,16 @@ Graphics:
 	0x05: 48 FPS
 	0x06: 60 FPS
 	0x07: 120 FPS
+
+	Bits Per Pixel:
+	0x00: 4 BPP (1 red, 2 green, 1 blue)
+	0x01: 8 BPP (3 red, 3 green, 2 blue)
+	0x02: 12 BPP (4 red, 4 green, 4 blue)
+	0x03: 16 BPP (5 red, 6 green, 5 blue)
+	0x04: 20 BPP (7 red, 7 green, 6 blue)
+	0x05: 24 BPP (8 red, 8 green, 8 blue)
+	0x06: 28 BPP (9 red, 10 green, 9 blue)
+	0x07: 32 BPP (8 red, 8 green, 8 blue, 8 alpha)
 
 	Statuses:
 	0x10: BSY
@@ -87,6 +98,8 @@ Graphics:
 	0x24: Set Virtual Screen Width (16 bit)
 	0x26: Get Virtual Screen Height (16 bit)
 	0x28: Set Virtual Screen Height (16 bit)
+	0x2A: Set Bits Per Pixel (8 bit)
+	0x2C: Get Bits Per Pixel (8 bit)
 	0xFF: Status Port (8 bit)
 
 Timer:
@@ -148,7 +161,7 @@ RNG:
 Newtork: TODO
 
 SCU:
-	0x0000: Device Index Port
+	0x0000: Device ID Port
 	0x00C0: Command Port
 	0x00D0: Data Port
 
@@ -161,8 +174,21 @@ SCU:
 	0x60: Get Device Info
 	0x70: Get All Device Info
 	0x80: Get SCU Status (0xFF: Ready, 0xF0: Busy, 0xE0: DRQ)
-	0x90: Interrupt on Device Failure (Snd Device ID to Data port)
-	0xA0: Update Firmware
+	0x90: Interrupt on Device Failure (Send Device ID to Data port)
+	0xA0: Update Firmware (Send address to data port, end with 0xFFAD to signal end of firmware)
 	0xB0: Set Data Frequency (For Update)
 	0xC0: Initialize Device
 	0xFF: Panic Device
+
+	Device ID:
+	Device Group | Group Index = Device ID
+
+	Device Groups:
+	0x00: Control
+	0x20: Timer
+	0x60: Connective
+	0x80: Storage
+	0xA0: Misc
+	0xB0: Graphics
+	0xE0: Audio
+	0xF0: Network

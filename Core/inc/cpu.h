@@ -1,12 +1,9 @@
 #pragma once
 #include "memory.h"
+#include "mobo.h"
 #include <thread>
 
 using std::thread;
-
-enum pm {	// Power Mode
-	DOWN, IDLE, RUNNING
-};
 
 struct registers {
 	uint64_t rx[28];		// 0-27

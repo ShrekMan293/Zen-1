@@ -1,6 +1,8 @@
 #include "cpu.h"
 
+
 cpu_controller cpu = { (pm)0, NULL };
+
 
 void aluParse(word inst, byte index) {
 	byte op1 = 0;
@@ -88,6 +90,7 @@ void aluParse(word inst, byte index) {
 			else if (cpu.cores[index].regs.rx[op1] < cpu.cores[index].regs.rx[op2]) {
 				cpu.cores[index].regs.rf5 |= 0b00100000;
 			}	// Else case is impossible
+			break;
 		}
 		default:	// TODO: Invalid Instruction Interrupt
 			return;
@@ -717,7 +720,7 @@ void internalParse(word inst, byte index, byte bitMode) {
 				cpu.cores[index].regs.rsp += 4;
 			}
 
-			for (size_t i = 28; i > 0; i++)
+			for (size_t i = 28; i > 0; i--)
 			{
 				if (bitMode == 64) {
 					fetchMemory(cpu.cores[index].regs.rsp, 8, &cpu.cores[index].regs.rx[i], 0);

@@ -1,9 +1,12 @@
 #include "boot.h"
 
 int main(int argc, char** argv) {
-	//initComponents();
-
 	float memorySize = 0;
+
+	if (argc < 3) {
+		std::cout << "Usage: [Zen-1] <memSize (0-5)> <disk path>\n";
+		return 1;
+	}
 	
 	if (argv[1] == "m0") memorySize = 0.25;
 	else if (argv[1] == "m1") memorySize = 0.5;
@@ -12,9 +15,13 @@ int main(int argc, char** argv) {
 	else if (argv[1] == "m4") memorySize = 4;
 	else if (argv[1] == "m5") memorySize = 6;
 	else memorySize = 0.5;
+	
+	std::string storagePath = std::string(argv[2]);
+	storageDevice.path = storagePath;
 
 	initMem(memorySize);
 	initCPU();
+	initComponents();
 
 	std::cout << cpu.cores[1].power << '\n';
 
