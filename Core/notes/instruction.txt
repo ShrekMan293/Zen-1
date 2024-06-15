@@ -15,14 +15,14 @@ xor (0b011111011010) (0x07DA)
 cmp (0b011111011011) (0x07DB)
 
 Memory: // BITS 11 AND 4 VARY DEPENDING ON THE OPERANDS
-mov   (0b001111000000) (0x0150)
+mov   (0b001111000000) (0x03C0)
 jmp	  (0b000101010001) (0x0151)
 call  (0b000101010010) (0x0152)
 ret	  (0b000001000011) (0x0043)
 push  (0b000101010100) (0x0154)
 pop   (0b000101010101) (0x0155)
 pusha (0b000001000110) (0x0046)
-popa  (0b000101010111) (0x0157)
+popa  (0b000001000111) (0x0047)
 popi  (0b000101011000) (0x0158)
 iret  (0b000001001001) (0x0049)
 
@@ -59,3 +59,17 @@ Bit 6: If ALU, logic or math (logic is 1). If not, internal or I/O (I/O is 0)
 Bit 5: Read AND Write op2?
 Bit 4: Immediate Value? For Internal Operations it is whether op 2 (data) is register (1) or immediate value (0)
 Bits 3-0: Offset in grouping
+
+Bits 15-14 for MOV, what bit length we are working with:
+0b00: 64 Bits
+0b01: 32 Bits
+0b10: 16 Bits
+0b11: 8 Bits
+
+
+Bits 13-12 for MOV, what to do with op 2:
+
+0b00: Read from Register
+0b01: Read from Register as pointer
+0b10: Read from memory
+0b11: Read as Immediate Value

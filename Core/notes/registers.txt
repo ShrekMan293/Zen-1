@@ -1,6 +1,6 @@
 
 Reegisters:
-rx0-rx28
+rx0-rx27
 rf0-rf5
 
 
@@ -18,12 +18,11 @@ rf5: Flags
 	Bit 0: Equal
 	Bit 1: Carry
 	Bit 2: Overflow
-	Bit 3: Reserved
+	Bit 3: Greater
 	Bit 4: Zero Flag
-	Bit 5: Reserved
+	Bit 5: Less Than
 	Bit 6: Direction	; Down 0, Up 1
 	Bit 7: Halt Flag
-	Bit 8: Reserved
 
 PDR:
 	Bit 0-1: Privelege level (0: kernel, 1: driver, 2: media, 3: games) last two are pretty much the same except media can run in background

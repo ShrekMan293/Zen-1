@@ -42,4 +42,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="notes\devices.txt" />
+  </ItemGroup>
 </Project>

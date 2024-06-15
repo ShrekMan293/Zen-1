@@ -20,8 +20,8 @@ struct memory_struct {
 extern memory_struct memory;	// 8 GB
 void initMem(float memorySize);
 
-static void writeMemory8(uint64_t memOffset, byte data);
-static void writeMemory16(uint64_t memOffset, word data);
-static void writeMemory32(uint64_t memOffset, uint32_t data);
-static void writeMemory64(uint64_t memOffset, uint64_t data);
-static void fetchMemory(uint64_t memOffset, uint64_t fetchLength, void* destination, uint64_t destinationOffset);
+void writeMemory8(uint64_t memOffset, byte data);
+void writeMemory16(uint64_t memOffset, word data);
+void writeMemory32(uint64_t memOffset, uint32_t data);
+void writeMemory64(uint64_t memOffset, uint64_t data);
+void fetchMemory(uint64_t memOffset, uint64_t fetchLength, void* destination, uint64_t destinationOffset);

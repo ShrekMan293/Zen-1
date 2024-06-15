@@ -30,6 +30,9 @@
     <ClInclude Include="inc\memory.h" />
     <ClInclude Include="inc\mobo.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="notes\devices.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

@@ -1,0 +1,168 @@
+Motherboard:
+	Doesn't actually have any I/O,
+	just handles interrupts and I/O
+
+Storage:
+	0x4D00: Storage Information Block (168 bits)
+	0x4D0F: Status Port
+
+	Statuses:
+	0x10: BUSY	// Doing something
+	0x20: IDLE	// Not doing something but not available
+	0x30: READY	// Open for commands
+	0x40: DRQ	// Requesting data
+	0x80: SIBINV	// Invalid Storage Information Block
+	0x90: DF	// Disk Failure
+	0xA0: BS	// Bad Sector
+	0xB0: INVS	// Invalid Sector
+	0xC0: BD	// Bad Data
+	0xD0: DOWN
+	0xF0: UNK	// Unknown Error
+
+	Commands:
+	No Operation (0x00)
+	Reset Disk State (0x10)
+	Read Sectors (0x30)
+	Write Sectors (0x40)
+	Read Sectors with Retry (0xC0)
+	Write Sectors with Retry (0xD0)
+	Disk Information (0xEC)
+	Clear Disk (0xFA)	// Clears all 
+	Toggle Disk State (0xFF) (On, Off) (THIS IS NOT A POWER MODE, THE DISK WILL STILL BE RUNNING IT JUST PAUSES IT)
+
+	Storage Information Block:
+	Bits 167-160: Command
+	Bits 159-96: Start Sector
+	Bits 95-64: Count
+	Bits 63-0: Memory Address
+
+Audio:
+	0x3CE0: Audio Information Block
+
+	Modes:
+	0b00: Mono 44100 samples per second per channel, 16 bit depth
+	0b01: Mono 44100 samples per second per channel, 8 bit depth
+	0b10: Stereo 44100 samples per second per channel, 8 bit depth
+	0b11: Stereo 44100 samples per second per channel, 16 bit depth
+
+	Bits 71-66: Reserved
+	Bits 66-64: Mode
+	Bits 63-0: Memory Address
+
+Graphics:
+	0xD200: Index Register
+	0xD201: Data Register
+
+	Modes:
+	0x00: 16 FPS
+	0x01: 24 FPS
+	0x02: 30 FPS
+	0x03: 36 FPS
+	0x04: 40 FPS
+	0x05: 48 FPS
+	0x06: 60 FPS
+	0x07: 120 FPS
+
+	Statuses:
+	0x10: BSY
+	0x20: IDLE
+	0x30: READY
+	0x40: DRQ
+	0x80: BADI	// Bad Index
+	0x90: BADD	// Bad Data
+	0xA0: INVD	// Invalid Data
+	0xF0: DF	// Device Fault
+
+	Indexes:
+	0x10: Get Mode (8 bit)
+	0x12: Set Mode (8 bit)
+	0x14: Get Videobuffer Address (64 bit)
+	0x16: Set Videobuffer Address (64 bit)
+	0x18: Get Screen Width (16 bit)
+	0x1A: Set Screen Width (16 bit)
+	0x1C: Get Screen Height (16 bit)
+	0x1E: Set Screen Height (16 bit)
+	0x20: Toggle Display (8 bit)
+	0x22: Get Virtual Screen Width (16 bit)
+	0x24: Set Virtual Screen Width (16 bit)
+	0x26: Get Virtual Screen Height (16 bit)
+	0x28: Set Virtual Screen Height (16 bit)
+	0xFF: Status Port (8 bit)
+
+Timer:
+	0xC000: Command Port
+	0xC002: Data Port
+
+	Frequency Modes:
+	0b00: 1 Hz (1 tick per second)
+	0b01: 1 MHz (1,000,000 ticks per second (1 per microsecond))
+	0b10: 1 GHz (1,000,000,000 ticks per second (1 per nanosecond))
+
+	Modes:
+	0b00: One Shot
+	0b01: Terminal Count (count down)
+	0b10: Retriggerable One Shot
+	0b11: Rate Generator
+
+	Command Bits 7-4: Mode
+	Command Bits 3-0: Frequency Mode
+
+RTC:
+	0x11A0: Command + Seconds
+	0x11A1: Minutes
+	0x11A2: Hours
+	0x11A3: Days
+	0x11A4: Month
+	0x11A5: Year
+
+	Command: Get Date and Time (0), Recalibrate Time (1)
+
+USB Controller:
+	0xB800: Command Port
+	0xB801: Index Port
+	0xB802: Address Port
+
+	Commands:
+	0x10: Set Polling Mode
+	0x20: Set Interrupt Mode
+	0x30: Set Isochronous Mode (Constant Stream)
+	0x40: Set Bit Rate
+	0x50: Get Data Frequency / Second
+	0x60: Get Device Info
+	0x70: Get Port Info
+	0x80: Poll Port
+	0x90: Start Data Stream
+	0xA0: Stop Data Stream
+	0xB0: Execute Command
+	0xC0: Cancel Command
+	0xD0: Stop Port
+	0xE0: Toggle Device (Sleep / Wake)
+	0xF0: Reset Device
+
+RNG:
+	0x9000: Poll and Get Number
+
+	Send 0xAFCA to 0x9000
+	Then next poll will contain the random number
+
+Newtork: TODO
+
+SCU:
+	0x0000: Device Index Port
+	0x00C0: Command Port
+	0x00D0: Data Port
+
+	Commands:
+	0x10: Set Power Mode
+	0x20: Get Power Mode
+	0x30: Reset Device
+	0x40: Enable Device
+	0x50: Disable Device
+	0x60: Get Device Info
+	0x70: Get All Device Info
+	0x80: Get SCU Status (0xFF: Ready, 0xF0: Busy, 0xE0: DRQ)
+	0x90: Interrupt on Device Failure (Snd Device ID to Data port)
+	0xA0: Update Firmware
+	0xB0: Set Data Frequency (For Update)
+	0xC0: Initialize Device
+	0xFF: Panic Device
