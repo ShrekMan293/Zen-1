@@ -51,65 +51,46 @@ Audio:
 
 Graphics:
 	0xD200: Index Register
-	0xD201: 8 Bit Data Register
-	0xD202: 16 Bit Data Register
-
-	Modes:
-	0x00: 16 FPS
-	0x01: 24 FPS
-	0x02: 30 FPS
-	0x03: 36 FPS
-	0x04: 40 FPS
-	0x05: 48 FPS
-	0x06: 60 FPS
-	0x07: 120 FPS
+	0xD201: Data Register
 
 	Bits Per Pixel:
-	0x00: 4 BPP (1 red, 2 green, 1 blue)
-	0x01: 8 BPP (3 red, 3 green, 2 blue)
-	0x02: 12 BPP (4 red, 4 green, 4 blue)
-	0x03: 16 BPP (5 red, 6 green, 5 blue)
-	0x04: 20 BPP (7 red, 7 green, 6 blue)
-	0x05: 24 BPP (8 red, 8 green, 8 blue)
-	0x06: 28 BPP (9 red, 10 green, 9 blue)
-	0x07: 32 BPP (8 red, 8 green, 8 blue, 8 alpha)
+	0x00: 8 BPP (3 red, 3 green, 2 blue)
+	0x01: 16 BPP (4 alpha, 4 red, 4 green, 4 blue)
+	0x02: 16 BPP (1 alpha, 5 red, 5 green, 5 blue)
+	0x03: 24 BPP (8 red, 8 green, 8 blue)
+	0x04: 32 BPP (8 red, 8 green, 8 blue, 8 alpha)
 
 	Statuses:
 	0x10: BSY
 	0x20: IDLE
 	0x30: READY
 	0x40: DRQ
-	0x80: BADI	// Bad Index
+	0x80: INVI	// Invalid Index
 	0x90: BADD	// Bad Data
 	0xA0: INVD	// Invalid Data
-	0xF0: DF	// Device Fault
+	0xDF: DF	// Device Fault	(I had to take the opportunity)
 
 	Indexes:
-	0x10: Get Mode (8 bit)
-	0x12: Set Mode (8 bit)
-	0x14: Get Videobuffer Address (64 bit)
-	0x16: Set Videobuffer Address (64 bit)
-	0x18: Get Screen Width (16 bit)
-	0x1A: Set Screen Width (16 bit)
-	0x1C: Get Screen Height (16 bit)
-	0x1E: Set Screen Height (16 bit)
-	0x20: Toggle Display (8 bit)
-	0x22: Get Virtual Screen Width (16 bit)
-	0x24: Set Virtual Screen Width (16 bit)
-	0x26: Get Virtual Screen Height (16 bit)
-	0x28: Set Virtual Screen Height (16 bit)
-	0x2A: Set Bits Per Pixel (8 bit)
+	0x10: Get Videobuffer Address (64 bit)
+	0x12: Set Videobuffer Address (64 bit)
+	0x14: Get Screen Width (16 bit)
+	0x16: Set Screen Width (16 bit)
+	0x18: Get Screen Height (16 bit)
+	0x1A: Set Screen Height (16 bit)
+	0x1C: Toggle Display (8 bit)
+	0x2A: Set Bits Per Pixel (8 bit) (Also clears screen)
 	0x2C: Get Bits Per Pixel (8 bit)
-	0xFF: Status Port (8 bit)
+	0xFF: Get Status (8 bit)
 
 Timer:
 	0xC000: Command Port
-	0xC002: Data Port
+	0xC002: Start Value Port
 
 	Frequency Modes:
 	0b00: 1 Hz (1 tick per second)
-	0b01: 1 MHz (1,000,000 ticks per second (1 per microsecond))
-	0b10: 1 GHz (1,000,000,000 ticks per second (1 per nanosecond))
+	0b01: 1000 Hz (1000 ticks per second (1 tick per millisecond))
+	0b10: 1 MHz (1,000,000 ticks per second (1 per microsecond))
+	0b11: 1 GHz (1,000,000,000 ticks per second (1 per nanosecond))
 
 	Modes:
 	0b00: One Shot
@@ -121,18 +102,19 @@ Timer:
 	Command Bits 3-0: Frequency Mode
 
 RTC:
-	0x11A0: Command + Seconds
-	0x11A1: Minutes
-	0x11A2: Hours
-	0x11A3: Days
-	0x11A4: Month
-	0x11A5: Year
+	0x11A0: Get Time (Seconds since 1/1/1970)
 
-	Command: Get Date and Time (0), Recalibrate Time (1)
+USB Controller (Controller):
+	0xB800: Toggle Controller
+	0xB802: Get Connection 
 
-USB Controller:
+	Connections:
+	0x01: Connected
+	0x02: Not Connected
+	0x03: Connected but not active
+
+USB Controller (Data):
 	0xB800: Command Port
-	0xB801: Index Port
 	0xB802: Address Port
 
 	Commands:
@@ -161,30 +143,27 @@ RNG:
 Newtork: TODO
 
 SCU:
-	0x0000: Device ID Port
+	0x0000: Device Index Port
 	0x00C0: Command Port
 	0x00D0: Data Port
 
 	Commands:
-	0x10: Set Power Mode
+	0x10: Set Power Mode (8 bit)
 	0x20: Get Power Mode
 	0x30: Reset Device
 	0x40: Enable Device
 	0x50: Disable Device
-	0x60: Get Device Info
-	0x70: Get All Device Info
-	0x80: Get SCU Status (0xFF: Ready, 0xF0: Busy, 0xE0: DRQ)
-	0x90: Interrupt on Device Failure (Send Device ID to Data port)
-	0xA0: Update Firmware (Send address to data port, end with 0xFFAD to signal end of firmware)
-	0xB0: Set Data Frequency (For Update)
-	0xC0: Initialize Device
-	0xFF: Panic Device
+	0x60: Get All Device IDs (64 bits)
+	0x80: Get SCU Status (0xFF: Ready, 0xF0: Busy, 0xE0: DRQ) (8 bits)
+	0xF0: System Shutdown
+	0xFF: Panic Device (Sends interrupts to the CPU warning of device shutdown while rapidly enabling and disabling device, if control, connective, storage, or graphics device, puts CPU in safety mode)
 
 	Device ID:
 	Device Group | Group Index = Device ID
 
 	Device Groups:
 	0x00: Control
+	0x10: Central Processing Unit
 	0x20: Timer
 	0x60: Connective
 	0x80: Storage

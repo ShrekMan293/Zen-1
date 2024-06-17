@@ -60,6 +60,12 @@ Bit 5: Read AND Write op2?
 Bit 4: Immediate Value? For Internal Operations it is whether op 2 (data) is register (1) or immediate value (0)
 Bits 3-0: Offset in grouping
 
+Bits 13-12 for IN and OUT, what bit length we are using:
+0b00: 64 Bits
+0b01: 32 Bits
+0b10: 16 Bits
+0b11: 8 Bits
+
 Bits 15-14 for MOV, what bit length we are working with:
 0b00: 64 Bits
 0b01: 32 Bits

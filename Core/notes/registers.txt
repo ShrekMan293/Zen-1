@@ -3,18 +3,18 @@ Reegisters:
 rx0-rx27
 rf0-rf5
 
-
 rpp: program pointer
+risp: interrupt stack pointer (interrupts go straight here)
 
 rf0:
 	Bits 2-0: Mode (0b00 x64, 0b01 Safety, 0b10 Critical, 0b11 x32 Emulation)
+	Bit 5: Double Fault
+	Bit 6: Active Interrupt?
 	Bit 7: Interrupt Enable
 	Bit 8: Paging Enable
-rf1: PML4 Address
-rf2: PDT Address
-rf3: IDT Address
-rf4: DFN Address
-rf5: Flags
+rf1: IDT Address
+rf2: DFN Address
+rf3: Flags
 	Bit 0: Equal
 	Bit 1: Carry
 	Bit 2: Overflow
@@ -23,12 +23,3 @@ rf5: Flags
 	Bit 5: Less Than
 	Bit 6: Direction	; Down 0, Up 1
 	Bit 7: Halt Flag
-
-PDR:
-	Bit 0-1: Privelege level (0: kernel, 1: driver, 2: media, 3: games) last two are pretty much the same except media can run in background
-	Bit 2: Code or Data (Data is 0)
-	Bit 3: R/W (Code sections can never have writing, Read sections are always allowed to read)
-	Bit 4: Direction (0 is down)
-	Bit 5: 64 or 32 bit (32 is 0)
-	Bit 6: Present
-	Bit 7: Accessed (automatically set by CPU)

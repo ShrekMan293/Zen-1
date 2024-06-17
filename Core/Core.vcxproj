@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes\devices.txt" />
+    <Text Include="notes\interrupts.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -87,7 +88,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>.\inc;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>C:\Users\naten\Desktop\Desktop\Zen-1\SDL2-2.30.3\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>C:\Users\naten\Desktop\Desktop\Zen-1\SDL2-2.30.3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -129,6 +131,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>"C:\Users\naten\Desktop\Desktop\Zen-1\SDL2-2.30.3\lib\x64\SDL2.lib";"C:\Users\naten\Desktop\Desktop\Zen-1\SDL2-2.30.3\lib\x64\SDL2main.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -17,7 +17,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -29,7 +33,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -41,7 +49,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -53,7 +65,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -65,7 +81,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -77,22 +97,31 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
 			if (cpu.cores[index].regs.rx[op1] == cpu.cores[index].regs.rx[op2]) {
-				cpu.cores[index].regs.rf5 |= 0b00000001;
+				cpu.cores[index].regs.rf3 |= 0b00000001;
 			}
 			else if (cpu.cores[index].regs.rx[op1] > cpu.cores[index].regs.rx[op2]) {
-				cpu.cores[index].regs.rf5 |= 0b00001000;
+				cpu.cores[index].regs.rf3 |= 0b00001000;
 			}
 			else if (cpu.cores[index].regs.rx[op1] < cpu.cores[index].regs.rx[op2]) {
-				cpu.cores[index].regs.rf5 |= 0b00100000;
+				cpu.cores[index].regs.rf3 |= 0b00100000;
 			}	// Else case is impossible
 			break;
 		}
-		default:	// TODO: Invalid Instruction Interrupt
+		default:
+			size_t* registers = new size_t[1];
+			uint64_t* data = new uint64_t[1];
+			registers[0] = 4;
+			data[0] = cpu.cores[index].regs.rpp;
+			createIRQ(index, 0, 0x02, registers, data, 1);
 			return;
 		}
 	}
@@ -105,7 +134,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -117,7 +150,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -129,7 +166,20 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
+				return;
+			}
+
+			if (cpu.cores[index].regs.rx[op2] == 0) {
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x00, registers, data, 1);
 				return;
 			}
 
@@ -143,7 +193,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -159,7 +213,11 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
@@ -171,14 +229,23 @@ void aluParse(word inst, byte index) {
 			fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
 
 			if (op1 > 27 || op2 > 27) {
-				// TODO: Invalid Operand Interrupt
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x01, registers, data, 1);
 				return;
 			}
 
 			cpu.cores[index].regs.rx[op1] >>= cpu.cores[index].regs.rx[op2];
 			break;
 		}
-		default:	// TODO: Invalid Instruction Interrupt
+		default:
+			size_t* registers = new size_t[1];
+			uint64_t* data = new uint64_t[1];
+			registers[0] = 4;
+			data[0] = cpu.cores[index].regs.rpp;
+			createIRQ(index, 0, 0x02, registers, data, 1);
 			return;
 		}
 	}
@@ -197,7 +264,31 @@ void internalParse(word inst, byte index, byte bitMode) {
 				switch ((inst & 0x3000) >> 12)
 				{
 				case 0: {
-					cpu.cores[index].regs.rx[op1] = cpu.cores[index].regs.rx[op2];
+					if (op1 > 27) {
+						switch (op1) {
+						case 28: cpu.cores[index].regs.rsp = cpu.cores[index].regs.rx[op2]; break;
+						case 29: cpu.cores[index].regs.rbp = cpu.cores[index].regs.rx[op2]; break;
+						case 30: cpu.cores[index].regs.rf0 = cpu.cores[index].regs.rx[op2]; break;
+						case 31: cpu.cores[index].regs.rf1 = cpu.cores[index].regs.rx[op2]; break;
+						case 32: cpu.cores[index].regs.rf2 = cpu.cores[index].regs.rx[op2]; break;
+						case 33: cpu.cores[index].regs.rf3 = cpu.cores[index].regs.rx[op2]; break;
+						default: size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							break;
+						}
+					}
+					else cpu.cores[index].regs.rx[op1] = cpu.cores[index].regs.rx[op2];
+					if (op2 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
 					break;
 				}
 				case 1: {
@@ -209,10 +300,37 @@ void internalParse(word inst, byte index, byte bitMode) {
 					case 3: bitLength = 8; break;
 					}
 
-					fetchMemory(cpu.cores[index].regs.rx[op2], bitLength / 8, &cpu.cores[index].regs.rx[op1], 0);
+					if (op1 > 27) {
+						switch (op1) {
+						case 28: fetchMemory(cpu.cores[index].regs.rx[op2], bitLength / 8,
+							&cpu.cores[index].regs.rsp, 0); break;
+						case 29: fetchMemory(cpu.cores[index].regs.rx[op2], bitLength / 8,
+							&cpu.cores[index].regs.rbp, 0); break;
+						case 30: fetchMemory(cpu.cores[index].regs.rx[op2], 1,
+							&cpu.cores[index].regs.rf0, 0); break;
+						case 31: fetchMemory(cpu.cores[index].regs.rx[op2], bitLength / 8,
+							&cpu.cores[index].regs.rf1, 0); break;
+						case 32: fetchMemory(cpu.cores[index].regs.rx[op2], bitLength / 8,
+							&cpu.cores[index].regs.rf2, 0); break;
+						case 33: fetchMemory(cpu.cores[index].regs.rx[op2], 1,
+							&cpu.cores[index].regs.rf3, 0); break;
+						default: size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							break;
+						}
+					}
+					else fetchMemory(cpu.cores[index].regs.rx[op2], bitLength / 8, &cpu.cores[index].regs.rx[op1], 0);
 					break;
 				}
-				default: // Invalid Instruction
+				default:
+					size_t* registers = new size_t[1];
+					uint64_t* data = new uint64_t[1];
+					registers[0] = 4;
+					data[0] = cpu.cores[index].regs.rpp;
+					createIRQ(index, 0, 0x02, registers, data, 1);
 					return;
 				}
 			}
@@ -238,14 +356,35 @@ void internalParse(word inst, byte index, byte bitMode) {
 					case 3: bitLength = 8; break;
 					}
 
+					if (op1 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
 					fetchMemory(op2, bitLength / 8, &cpu.cores[index].regs.rx[op1], 0);
 					break;
 				}
 				case 3: {
+					if (op1 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
 					cpu.cores[index].regs.rx[op1] = op2;
 					break;
 				}
-				default: // Invalid Instruction
+				default:
+					size_t* registers = new size_t[1];
+					uint64_t* data = new uint64_t[1];
+					registers[0] = 4;
+					data[0] = cpu.cores[index].regs.rpp;
+					createIRQ(index, 0, 0x02, registers, data, 1);
 					return;
 				}
 			}
@@ -266,6 +405,15 @@ void internalParse(word inst, byte index, byte bitMode) {
 				switch ((inst & 0xF000) >> 12)
 				{
 				case 0: {
+					if (op2 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
+
 					if (bitLength == 64) {
 						writeMemory64(op1, cpu.cores[index].regs.rx[op2]);
 					}
@@ -287,6 +435,14 @@ void internalParse(word inst, byte index, byte bitMode) {
 					case 1: bitLength = 32; break;
 					case 2: bitLength = 16; break;
 					case 3: bitLength = 8; break;
+					}
+					if (op2 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
 					}
 
 					if (bitLength == 64) {
@@ -311,7 +467,12 @@ void internalParse(word inst, byte index, byte bitMode) {
 					}
 					break;
 				}
-				default: // Invalid Instruction
+				default:
+					size_t* registers = new size_t[1];
+					uint64_t* data = new uint64_t[1];
+					registers[0] = 4;
+					data[0] = cpu.cores[index].regs.rpp;
+					createIRQ(index, 0, 0x02, registers, data, 1);
 					return;
 				}
 			}
@@ -366,7 +527,12 @@ void internalParse(word inst, byte index, byte bitMode) {
 					}
 					break;
 				}
-				default: // Invalid Instruction
+				default:
+					size_t* registers = new size_t[1];
+					uint64_t* data = new uint64_t[1];
+					registers[0] = 4;
+					data[0] = cpu.cores[index].regs.rpp;
+					createIRQ(index, 0, 0x02, registers, data, 1);
 					return;
 				}
 			}
@@ -381,6 +547,14 @@ void internalParse(word inst, byte index, byte bitMode) {
 			case 1: {
 				if (inst & 0b0000100000000000) {
 					fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+					if (op1 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
 					cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 				}
 				else {
@@ -426,10 +600,26 @@ void internalParse(word inst, byte index, byte bitMode) {
 			case 4: {
 				if (bitMode == 64) {
 					fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+					if (op1 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
 					writeMemory64(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rx[op1]);
 				}
 				else {
 					fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+					if (op1 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
 					writeMemory32(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rx[op1] & 0xFFFF);
 				}
 				break;
@@ -437,16 +627,37 @@ void internalParse(word inst, byte index, byte bitMode) {
 			case 5: {
 				if (bitMode == 64) {
 					fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+					if (op1 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
 					fetchMemory(cpu.cores[index].regs.rsp, 8, &cpu.cores[index].regs.rx[op1], 0);
 				}
 				else {
 					fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+					if (op1 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
 					fetchMemory(cpu.cores[index].regs.rsp, 4, &cpu.cores[index].regs.rx[op1], 0);
 				}
 				break;
 			}
 			case 8:
-			default:	// TODO: Invalid Instruction Interrupt
+			default:
+				size_t* registers = new size_t[1];
+				uint64_t* data = new uint64_t[1];
+				registers[0] = 4;
+				data[0] = cpu.cores[index].regs.rpp;
+				createIRQ(index, 0, 0x02, registers, data, 1);
 				return;
 			}
 		}
@@ -456,9 +667,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 			switch (inst)
 			{
 			case 0: {
-				if ((cpu.cores[index].regs.rf5 & 1) == 0) {	// Gets bit 0 alone and checks
+				if ((cpu.cores[index].regs.rf3 & 1) == 0) {	// Gets bit 0 alone and checks
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -477,9 +696,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 1: {
-				if (cpu.cores[index].regs.rf5 & 0b00000010) {
+				if (cpu.cores[index].regs.rf3 & 0b00000010) {
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -498,9 +725,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 2: {
-				if (cpu.cores[index].regs.rf5 & 0b00100000) {
+				if (cpu.cores[index].regs.rf3 & 0b00100000) {
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -519,9 +754,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 3: {
-				if (cpu.cores[index].regs.rf5 & 0b00100000 || (cpu.cores[index].regs.rf5 & 1) == 0) {
+				if (cpu.cores[index].regs.rf3 & 0b00100000 || (cpu.cores[index].regs.rf3 & 1) == 0) {
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -540,9 +783,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 4: {
-				if (cpu.cores[index].regs.rf5 & 0b00001000) {
+				if (cpu.cores[index].regs.rf3 & 0b00001000) {
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -561,9 +812,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 5: {
-				if (cpu.cores[index].regs.rf5 & 0b00001000 || (cpu.cores[index].regs.rf5 & 1) == 0) {
+				if (cpu.cores[index].regs.rf3 & 0b00001000 || (cpu.cores[index].regs.rf3 & 1) == 0) {
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -582,9 +841,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 6: {
-				if (cpu.cores[index].regs.rf5 & 0b00000100) {
+				if (cpu.cores[index].regs.rf3 & 0b00000100) {
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -603,9 +870,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 7: {
-				if (cpu.cores[index].regs.rf5 & 0b00000001) {
+				if (cpu.cores[index].regs.rf3 & 0b00000001) {
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -624,9 +899,17 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 8: {
-				if (((cpu.cores[index].regs.rf5 >> 1) & 1) == 0) {	// Gets bit 0 alone and checks
+				if (((cpu.cores[index].regs.rf3 >> 1) & 1) == 0) {	// Gets bit 0 alone and checks
 					if (inst & 0b0000100000000000) {
 						fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+						if (op1 > 27) {
+							size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 						cpu.cores[index].regs.rpp = cpu.cores[index].regs.rx[op1];
 					}
 					else {
@@ -647,18 +930,26 @@ void internalParse(word inst, byte index, byte bitMode) {
 			case 9: {
 				if (inst & 0b100000000000) {
 					fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
-					cpu.cores[index].regs.rx[op1] = cpu.cores[index].regs.rf5;
+					if (op1 > 27) {
+						size_t* registers = new size_t[1];
+						uint64_t* data = new uint64_t[1];
+						registers[0] = 4;
+						data[0] = cpu.cores[index].regs.rpp;
+						createIRQ(index, 0, 0x01, registers, data, 1);
+						return;
+					}
+					cpu.cores[index].regs.rx[op1] = cpu.cores[index].regs.rf3;
 				}
 				else {
 					if (bitMode == 64) {
 						fetchMemory(cpu.cores[index].regs.rpp, 8, &op1, 0);
 						cpu.cores[index].regs.rpp += 8;
-						writeMemory8(op1, cpu.cores[index].regs.rf5);
+						writeMemory8(op1, cpu.cores[index].regs.rf3);
 					}
 					else {
 						fetchMemory(cpu.cores[index].regs.rpp, 4, &op1, 0);
 						cpu.cores[index].regs.rpp += 4;
-						writeMemory8(op1, cpu.cores[index].regs.rf5);
+						writeMemory8(op1, cpu.cores[index].regs.rf3);
 					}
 				}
 				break;
@@ -671,8 +962,6 @@ void internalParse(word inst, byte index, byte bitMode) {
 	else if (inst & 0b0000000001000000) {	// No Operand
 		inst -= 0x0040;
 		if (inst == 0x0003) { // Return
-			uint64_t address = 0;
-
 			if (bitMode == 64) {
 				fetchMemory(cpu.cores[index].regs.rsp, 8, &cpu.cores[index].regs.rpp, 0);
 			}
@@ -733,23 +1022,135 @@ void internalParse(word inst, byte index, byte bitMode) {
 			}
 		}
 		else if (inst == 0x0009) {	// Interrupt Return
-			// TODO: Interrupt Calls
+			if (bitMode == 64) {
+				fetchMemory(cpu.cores[index].regs.rsp, 8, &cpu.cores[index].regs.rsp, 0);
+				cpu.cores[index].regs.rsp += 8;
+				fetchMemory(cpu.cores[index].regs.rsp, 8, &cpu.cores[index].regs.rbp, 0);
+				cpu.cores[index].regs.rsp += 8;
+			}
+			else {
+				fetchMemory(cpu.cores[index].regs.rsp, 4, &cpu.cores[index].regs.rsp, 0);
+				cpu.cores[index].regs.rsp += 4;
+				fetchMemory(cpu.cores[index].regs.rsp, 4, &cpu.cores[index].regs.rbp, 0);
+				cpu.cores[index].regs.rsp += 4;
+			}
+
+			for (size_t i = 28; i > 0; i--)
+			{
+				if (bitMode == 64) {
+					fetchMemory(cpu.cores[index].regs.rsp, 8, &cpu.cores[index].regs.rx[i], 0);
+					cpu.cores[index].regs.rsp += 8;
+				}
+				else {
+					fetchMemory(cpu.cores[index].regs.rsp, 4, &cpu.cores[index].regs.rx[i], 0);
+					cpu.cores[index].regs.rsp += 4;
+				}
+			}
+
+			if (bitMode == 64) {
+				fetchMemory(cpu.cores[index].regs.rsp, 8, &cpu.cores[index].regs.rpp, 0);
+			}
+			else {
+				fetchMemory(cpu.cores[index].regs.rsp, 4, &cpu.cores[index].regs.rpp, 0);
+			}
+
+			delete[] irq.registers;
+			delete[] irq.data;
+			irq = nullIRQ;
+			cpu.cores[index].regs.rf0 &= 0b11011111;
 			return;
 		}
 		else {
-			// TODO: Invalid Instruction Interrupt
+			size_t* registers = new size_t[1];
+			uint64_t* data = new uint64_t[1];
+			registers[0] = 4;
+			data[0] = cpu.cores[index].regs.rpp;
+			createIRQ(index, 0, 0x02, registers, data, 1);
 			return;
 		}
 	}
 	else {
-		// TODO: Invalid Instruction Interrupt
+		size_t* registers = new size_t[1];
+		uint64_t* data = new uint64_t[1];
+		registers[0] = 4;
+		data[0] = cpu.cores[index].regs.rpp;
+		createIRQ(index, 0, 0x02, registers, data, 1);
 		return;
 	}
 }
 
 void ioParse(word inst, byte index) {
-	if (inst == 0) return;	// NOP
-	// TODO: Add Interrupt and Gate Control
+	byte op1 = 0;
+	byte op2 = 0;
+
+	switch (inst) {
+	case 0: return;	// NOP
+	case 0x391: {	// In
+		request.core = index;
+		request.op = read;
+		fetchMemory(cpu.cores[index].regs.rpp++, 1, &request.data, 0);
+		fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
+		if (request.data > 27 || op2 > 27) {
+			size_t* registers = new size_t[1];
+			uint64_t* data = new uint64_t[1];
+			registers[0] = 4;
+			data[0] = cpu.cores[index].regs.rpp;
+			createIRQ(index, 0, 0x01, registers, data, 1);
+			return;
+		}
+		request.gate = (word)cpu.cores[index].regs.rx[op2];
+		break;
+	}
+	case 0x03F2: {	// Out
+		request.core = index;
+		request.op = write;
+		fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+		if (op1 > 27) {
+			size_t* registers = new size_t[1];
+			uint64_t* data = new uint64_t[1];
+			registers[0] = 4;
+			data[0] = cpu.cores[index].regs.rpp;
+			createIRQ(index, 0, 0x01, registers, data, 1);
+			return;
+		}
+		request.gate = (word)cpu.cores[index].regs.rx[op1];
+		fetchMemory(cpu.cores[index].regs.rpp++, 1, &op2, 0);
+		if (op2 > 27) {
+			size_t* registers = new size_t[1];
+			uint64_t* data = new uint64_t[1];
+			registers[0] = 4;
+			data[0] = cpu.cores[index].regs.rpp;
+			createIRQ(index, 0, 0x01, registers, data, 1);
+			return;
+		}
+		request.data = cpu.cores[index].regs.rx[op2];
+		break;
+	}
+	case 0x0113: {
+		fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+		createIRQ(index, 0, op1, nullptr, nullptr, 0);
+		break;
+	}
+	case 0x0004: {
+		while ((cpu.cores[index].regs.rf0 | 0b00100000) == 0);
+		break;
+	}
+	case 0x0005: cpu.cores[index].regs.rf0 &= 0b10111111; break;
+	case 0x0006: cpu.cores[index].regs.rf0 |= 0b01000000; break;
+	default:
+		size_t* registers = new size_t[1];
+		uint64_t* data = new uint64_t[1];
+		registers[0] = 4;
+		data[0] = cpu.cores[index].regs.rpp;
+		createIRQ(index, 0, 0x02, registers, data, 1);
+	}
+}
+
+bool IRQEqual(interruptRequest i1, interruptRequest i2) {
+	if (i1.core == i2.core && i1.data == i2.data &&
+		i1.gate == i2.gate && i1.registers == i2.registers &&
+		i1.value == i2.value) return true;
+	else return false;
 }
 
 void runCore(byte index) {
@@ -771,8 +1172,66 @@ void runCore(byte index) {
 	writeMemory8(0x101C, 0);
 
 	word inst = 0x0000;
+	interruptRequest currentIRQ = nullIRQ;
 
 	while (cpu.cores[index].power == RUNNING) {
+		if ((cpu.cores[index].regs.rf0 & 0x3) == 3) bitMode = 32;
+		else bitMode = 64;
+
+		if (!IRQEqual(currentIRQ, nullIRQ) && irq.core == index) {
+
+			for (size_t i = 0; i < 28; i++)
+			{
+				if (bitMode == 64) {
+					writeMemory64(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rx[i]);
+					cpu.cores[index].regs.rsp -= 8;
+				}
+				else {
+					writeMemory32(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rx[i] & 0xFFFF);
+					cpu.cores[index].regs.rsp -= 4;
+				}
+			}
+
+			if (bitMode == 64) {
+				writeMemory64(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rbp);
+				cpu.cores[index].regs.rsp -= 8;
+				writeMemory64(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rsp);
+				cpu.cores[index].regs.rsp -= 8;
+			}
+			else {
+				writeMemory32(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rbp & 0xFFFF);
+				cpu.cores[index].regs.rsp -= 4;
+				writeMemory32(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rsp & 0xFFFF);
+				cpu.cores[index].regs.rsp -= 4;
+			}
+
+			if (bitMode == 64) writeMemory64(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rpp);
+			else writeMemory32(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rpp);
+
+			for (size_t i = 0; i < irq.regCount; i++) {
+				cpu.cores[index].regs.rx[irq.registers[i]] = irq.data[i];
+			}
+			cpu.cores[index].regs.rx[0] = irq.gate;
+			cpu.cores[index].regs.rx[1] = irq.value;
+
+			if (irq.value == 0x07) cpu.cores[index].regs.rpp = cpu.cores[index].regs.rf2;
+			
+			fetchMemory(cpu.cores[index].regs.rf1 + irq.value, 8, &cpu.cores[index].regs.rpp, 0);
+			if (cpu.cores[index].regs.rf0 | 0b00010000) {
+				createIRQ(index, 0, 0x06, nullptr, nullptr, 0);
+				cpu.cores[index].regs.rf0 = 0b10;
+				request.core = index;
+				request.data = 0xF0;
+				request.gate = 0x00C0;
+				request.op = write;
+			}
+			if (cpu.cores[index].regs.rf0 | 0b00100000) {
+				createIRQ(index, 0, 0x05, nullptr, nullptr, 0);
+				cpu.cores[index].regs.rf0 = 0b01;
+			}
+			cpu.cores[index].regs.rf0 |= 0b00100000;
+		}
+
 		fetchMemory(cpu.cores[index].regs.rpp, 2, &inst, 0);
 		cpu.cores[index].regs.rpp += 2;
 		if ((inst & 0x0700) == 0x0700) {
@@ -791,6 +1250,8 @@ static void idle(byte index) {
 
 static void cpuMain(byte index) {
 	while (cpu.cores[index].power != DOWN) {
+		while (!cpu.cores[index].component.enabled);
+
 		if (cpu.cores[index].power == IDLE) {
 			idle(index);
 		}
@@ -798,13 +1259,56 @@ static void cpuMain(byte index) {
 	}
 }
 
+void reInitCPU(byte i) {
+	cpu.cores[i].cpuid = (byte)i;
+	cpu.cores[i].component.info.id = (byte)i | 0x10;	// Just a way for mobo to be able to recognize it
+
+	cpu.cores[i].component.info.DMA = 1;
+	cpu.cores[i].component.info.base = 0x0000;
+	cpu.cores[i].component.info.max = 0x0000;
+	cpu.cores[i].component.enabled = true;
+
+	if (i == 0) {
+		cpu.cores[i].component.info.power = RUNNING;
+		cpu.cores[i].power = RUNNING;
+	}
+	else {
+		cpu.cores[i].component.info.power = IDLE;
+		cpu.cores[i].power = IDLE;
+		cpu.cpu_threads[i] = thread(cpuMain, i);
+	}
+
+	for (size_t j = 0; j < 28; j++)
+	{
+		cpu.cores[i].regs.rx[j] = 0;
+	}
+	cpu.cores[i].regs.rpp = 0x1000;
+	cpu.cores[i].regs.rsp = 0x3000;
+	cpu.cores[i].regs.rbp = 0x3000;
+	cpu.cores[i].regs.rf0 = 0;
+	cpu.cores[i].regs.rf1 = 0;
+	cpu.cores[i].regs.rf2 = 0;
+	cpu.cores[i].regs.rf3 = 0;
+}
+
 void initCPU() {
 	cpu.cpu_threads = new std::thread[8];
 
 	for (byte i = 0; i < 8; i++) {
 		cpu.cores[i].cpuid = (byte)i;
-		if (i == 0) cpu.cores[i].power = RUNNING;
+		cpu.cores[i].component.info.id = (byte)i | 0x10;	// Just a way for mobo to be able to recognize it
+
+		cpu.cores[i].component.info.DMA = 1;
+		cpu.cores[i].component.info.base = 0x0000;
+		cpu.cores[i].component.info.max = 0x0000;
+		cpu.cores[i].component.enabled = true;
+
+		if (i == 0) {
+			cpu.cores[i].component.info.power = RUNNING;
+			cpu.cores[i].power = RUNNING;
+		}
 		else {
+			cpu.cores[i].component.info.power = IDLE;
 			cpu.cores[i].power = IDLE;
 			cpu.cpu_threads[i] = thread(cpuMain, i);
 		}
@@ -820,9 +1324,6 @@ void initCPU() {
 		cpu.cores[i].regs.rf1 = 0;
 		cpu.cores[i].regs.rf2 = 0;
 		cpu.cores[i].regs.rf3 = 0;
-		cpu.cores[i].regs.rf4 = 0;
-		cpu.cores[i].regs.rf5 = 0;
-		cpu.cores[i].regs.pdr = 0;
 	}
 
 	cpu.cpu_threads[0] = thread(cpuMain, 0);

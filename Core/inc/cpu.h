@@ -12,10 +12,7 @@ struct registers {
 	byte rf0;
 	uint64_t rf1;
 	uint64_t rf2;
-	uint64_t rf3;
-	uint64_t rf4;
-	byte rf5;
-	byte pdr;
+	byte rf3;
 	uint64_t rpp;	// Register Program Pointer
 };
 
@@ -23,6 +20,8 @@ struct CPU_State {
 	pm power;
 	registers regs;
 	byte cpuid;
+	mobo_t component;
+	interruptRequest irq_stack[16];
 };
 
 
@@ -34,3 +33,4 @@ struct cpu_controller {
 extern cpu_controller cpu;
 
 void initCPU();
+void reInitCPU(byte core);

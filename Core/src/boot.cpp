@@ -1,6 +1,12 @@
 #include "boot.h"
+#include <SDL.h>
 
 int main(int argc, char** argv) {
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER) != 0) {
+		std::cout << "Failed to initialize SDL.\n";
+		return 1;
+	}
+
 	float memorySize = 0;
 
 	if (argc < 3) {
@@ -23,11 +29,7 @@ int main(int argc, char** argv) {
 	initCPU();
 	initComponents();
 
-	std::cout << cpu.cores[1].power << '\n';
-
-	uint64_t i = 0;
-
-	while (i++ < UINT64_MAX);
+	while (systemState == RUNNING);
 
 	delete[] cpu.cpu_threads;
 	delete[] memory.mem1;
