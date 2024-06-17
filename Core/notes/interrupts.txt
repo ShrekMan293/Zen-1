@@ -1,0 +1,23 @@
+All Interrupts send their data to rx4
+0x00: Divide by Zero (Sets rx4 to the rpp)
+0x01: Invalid Operand (same thing)
+0x02: Invalid Opcode (same thing)
+0x03: Device Panic
+0x04: Breakpoint (For Debugging)
+0x05: Double Fault
+0x06: Triple Fault
+0x07: Execute Double Fault Net
+
+Hardware:
+0x08: Invalid Operation on Gate
+0x09: Timer Interrupt
+0x0A: Invalid Timer Frequency (sets rx4 to data value)
+0x0B: Invalid SCU Index
+0x0C: Invalid SCU Command
+0x10: Controller Button Down
+0x11: Controller Button Up
+0x12: Joystick Move (rx4: 0 = left-x-axis, 1 = left-y-axis, 2 = right-x-axis, 3 = right-y-axis, 4 = left trigger, 5 = right trigger)
+0x13: Trigger Move
+
+Everything else is up to user design
+0x80: (SUGGESTED) syscall
