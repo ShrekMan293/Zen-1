@@ -455,6 +455,7 @@ void tokenizeSymbol() {
 	case '\'': makeCharToken(); break;
 	case ':': makeToken(TT_COLON); break;
 	case '[': makeToken(TT_LBRACKET); break;
+ case ';': while (current() != '\n') advance(); break;
 	case ']': makeToken(TT_RBRACKET); break;
 	case ',': makeToken(TT_COMMA); break;
 	case '$': makeToken(TT_CURRENT); break;
