@@ -1505,7 +1505,7 @@ void addIden(char* lexeme) {
 void section_keyword() {
 	codegen_advance();
 
-	while (c.curByte++ % 16 != 0);
+	while (c.curByte % 16 != 0) writeByte(0);
 	addIden(codegen_currentToken().lexeme);
 
 	c.curSect = c.idens[c.curIden - 1];

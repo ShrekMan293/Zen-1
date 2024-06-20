@@ -2,6 +2,5 @@ bits 64
 section .code
 
 nras:
-	jmp $
-	movd rx21, 0x30
+	add rx1, rx2
 	jmp $

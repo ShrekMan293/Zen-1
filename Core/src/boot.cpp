@@ -1,5 +1,6 @@
 #include "boot.h"
 #include <fstream>
+#include <string>
 #include <SDL.h>
 
 int main(int argc, char** argv) {
@@ -45,7 +46,134 @@ int main(int argc, char** argv) {
 	initComponents();
 	initCPU();
 
-	while (systemState == RUNNING);
+	while (systemState == RUNNING) {
+		std::string data;
+
+		std::cout << "< ";
+		std::getline(std::cin, data);
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+		if (data == "regs0") {
+			std::cout << "RSP: " << cpu.cores[0].regs.rsp << '\t';
+			std::cout << "RBP: " << cpu.cores[0].regs.rbp << '\t';
+			std::cout << "RF0: " << cpu.cores[0].regs.rf0 << '\t';
+			std::cout << "RF1: " << cpu.cores[0].regs.rf1 << '\t';
+			std::cout << "RF2: " << cpu.cores[0].regs.rf2 << '\t';
+			std::cout << "RF3: " << cpu.cores[0].regs.rf3 << '\t';
+			std::cout << "RPP: " << cpu.cores[0].regs.rf0 << '\t';
+			std::cout << '\n';
+			for (size_t i = 0; i < 28; i++)
+			{
+				std::cout << "RX" << i << " " << cpu.cores[0].regs.rx[i] << '\t';
+				if (i % 7 == 0) std::cout << '\n';
+			}
+		}
+		else if (data == "regs1") {
+			std::cout << "RSP: " << cpu.cores[1].regs.rsp << '\t';
+			std::cout << "RBP: " << cpu.cores[1].regs.rbp << '\t';
+			std::cout << "RF0: " << cpu.cores[1].regs.rf0 << '\t';
+			std::cout << "RF1: " << cpu.cores[1].regs.rf1 << '\t';
+			std::cout << "RF2: " << cpu.cores[1].regs.rf2 << '\t';
+			std::cout << "RF3: " << cpu.cores[1].regs.rf3 << '\t';
+			std::cout << "RPP: " << cpu.cores[1].regs.rf0 << '\t';
+			std::cout << '\n';
+			for (size_t i = 0; i < 28; i++)
+			{
+				std::cout << "RX" << i << " " << cpu.cores[0].regs.rx[i] << '\t';
+				if (i % 7 == 0) std::cout << '\n';
+			}
+		}
+		else if (data == "regs2") {
+			std::cout << "RSP: " << cpu.cores[2].regs.rsp << '\t';
+			std::cout << "RBP: " << cpu.cores[2].regs.rbp << '\t';
+			std::cout << "RF0: " << cpu.cores[2].regs.rf0 << '\t';
+			std::cout << "RF1: " << cpu.cores[2].regs.rf1 << '\t';
+			std::cout << "RF2: " << cpu.cores[2].regs.rf2 << '\t';
+			std::cout << "RF3: " << cpu.cores[2].regs.rf3 << '\t';
+			std::cout << "RPP: " << cpu.cores[2].regs.rf0 << '\t';
+			std::cout << '\n';
+			for (size_t i = 0; i < 28; i++)
+			{
+				std::cout << "RX" << i << " " << cpu.cores[2].regs.rx[i] << '\t';
+				if (i % 7 == 0) std::cout << '\n';
+			}
+		}
+		else if (data == "regs3") {
+			std::cout << "RSP: " << cpu.cores[3].regs.rsp << '\t';
+			std::cout << "RBP: " << cpu.cores[3].regs.rbp << '\t';
+			std::cout << "RF0: " << cpu.cores[3].regs.rf0 << '\t';
+			std::cout << "RF1: " << cpu.cores[3].regs.rf1 << '\t';
+			std::cout << "RF2: " << cpu.cores[3].regs.rf2 << '\t';
+			std::cout << "RF3: " << cpu.cores[3].regs.rf3 << '\t';
+			std::cout << "RPP: " << cpu.cores[3].regs.rf0 << '\t';
+			std::cout << '\n';
+			for (size_t i = 0; i < 28; i++)
+			{
+				std::cout << "RX" << i << " " << cpu.cores[3].regs.rx[i] << '\t';
+				if (i % 7 == 0) std::cout << '\n';
+			}
+		}
+		else if (data == "regs4") {
+			std::cout << "RSP: " << cpu.cores[4].regs.rsp << '\t';
+			std::cout << "RBP: " << cpu.cores[4].regs.rbp << '\t';
+			std::cout << "RF0: " << cpu.cores[4].regs.rf0 << '\t';
+			std::cout << "RF1: " << cpu.cores[4].regs.rf1 << '\t';
+			std::cout << "RF2: " << cpu.cores[4].regs.rf2 << '\t';
+			std::cout << "RF3: " << cpu.cores[4].regs.rf3 << '\t';
+			std::cout << "RPP: " << cpu.cores[4].regs.rf0 << '\t';
+			std::cout << '\n';
+			for (size_t i = 0; i < 28; i++)
+			{
+				std::cout << "RX" << i << " " << cpu.cores[4].regs.rx[i] << '\t';
+				if (i % 7 == 0) std::cout << '\n';
+			}
+		}
+		else if (data == "regs5") {
+			std::cout << "RSP: " << cpu.cores[5].regs.rsp << '\t';
+			std::cout << "RBP: " << cpu.cores[5].regs.rbp << '\t';
+			std::cout << "RF0: " << cpu.cores[5].regs.rf0 << '\t';
+			std::cout << "RF1: " << cpu.cores[5].regs.rf1 << '\t';
+			std::cout << "RF2: " << cpu.cores[5].regs.rf2 << '\t';
+			std::cout << "RF3: " << cpu.cores[5].regs.rf3 << '\t';
+			std::cout << "RPP: " << cpu.cores[5].regs.rf0 << '\t';
+			std::cout << '\n';
+			for (size_t i = 0; i < 28; i++)
+			{
+				std::cout << "RX" << i << " " << cpu.cores[5].regs.rx[i] << '\t';
+				if (i % 7 == 0) std::cout << '\n';
+			}
+		}
+		else if (data == "regs6") {
+			std::cout << "RSP: " << cpu.cores[6].regs.rsp << '\t';
+			std::cout << "RBP: " << cpu.cores[6].regs.rbp << '\t';
+			std::cout << "RF0: " << cpu.cores[6].regs.rf0 << '\t';
+			std::cout << "RF1: " << cpu.cores[6].regs.rf1 << '\t';
+			std::cout << "RF2: " << cpu.cores[6].regs.rf2 << '\t';
+			std::cout << "RF3: " << cpu.cores[6].regs.rf3 << '\t';
+			std::cout << "RPP: " << cpu.cores[6].regs.rf0 << '\t';
+			std::cout << '\n';
+			for (size_t i = 0; i < 28; i++)
+			{
+				std::cout << "RX" << i << " " << cpu.cores[6].regs.rx[i] << '\t';
+				if (i % 7 == 0) std::cout << '\n';
+			}
+		}
+		else if (data == "regs7") {
+			std::cout << "RSP: " << cpu.cores[7].regs.rsp << '\t';
+			std::cout << "RBP: " << cpu.cores[7].regs.rbp << '\t';
+			std::cout << "RF0: " << cpu.cores[7].regs.rf0 << '\t';
+			std::cout << "RF1: " << cpu.cores[7].regs.rf1 << '\t';
+			std::cout << "RF2: " << cpu.cores[7].regs.rf2 << '\t';
+			std::cout << "RF3: " << cpu.cores[7].regs.rf3 << '\t';
+			std::cout << "RPP: " << cpu.cores[7].regs.rf0 << '\t';
+			std::cout << '\n';
+			for (size_t i = 0; i < 28; i++)
+			{
+				std::cout << "RX" << i << " " << cpu.cores[7].regs.rx[i] << '\t';
+				if (i % 7 == 0) std::cout << '\n';
+			}
+		}
+	}
 
 	delete[] cpu.cpu_threads;
 	delete[] memory.mem1;
