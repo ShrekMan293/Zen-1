@@ -20,7 +20,7 @@ enum TokenType {
 
 	// I/O
 	TT_NOP, TT_IN, TT_OUT, TT_INT,
-	TT_HLT, TT_CLI, TT_STI, TT_PANIC,
+	TT_HLT, TT_CLI, TT_STI,
 
 	// Symbols:
 	TT_NEWLINE, TT_COLON, TT_COMMA,
