@@ -272,7 +272,7 @@ void storageMain() {
 		}
 		else if (request.gate == 0x4D08) {
 			if (request.op != read) {
-				createIRQ(0, request.data, 0x08, nullptr, nullptr, 0);
+				createIRQ(0, (word)request.data, 0x08, nullptr, nullptr, 0);
 			}
 			else cpu.cores[request.core].regs.rx[request.data] = storageDevice.status;
 		}
@@ -297,12 +297,14 @@ void graphicsMain() {
 
 
 	if (window == nullptr || renderer == nullptr) {
-		request.core = 0;
-		request.data = 0xB0;
-		request.gate = 0x0000;
-		request.op = write;
-
 		do {
+			request.core = 0;
+			request.data = 0xB0;
+			request.gate = 0x0000;
+			request.op = write;
+
+			std::this_thread::sleep_for(std::chrono::microseconds(10));
+
 			request.core = 0;
 			request.data = 27;
 			request.gate = 0x0000;
@@ -326,7 +328,7 @@ void graphicsMain() {
 			case 0x12: graphicDevice.framebuffer = graphicDevice.data; break;
 			case 0x14: graphicDevice.data = graphicDevice.width; break;
 			case 0x16: {
-				graphicDevice.width = graphicDevice.data;
+				graphicDevice.width = (word)graphicDevice.data;
 				SDL_DestroyTexture(screen);
 				screen = SDL_CreateTexture(renderer, pixelFormat, SDL_TEXTUREACCESS_STREAMING,
 					graphicDevice.width, graphicDevice.height);
@@ -338,7 +340,7 @@ void graphicsMain() {
 			}
 			case 0x18: graphicDevice.data = graphicDevice.height; break;
 			case 0x1A: {
-				graphicDevice.height = graphicDevice.data;
+				graphicDevice.height = (word)graphicDevice.data;
 				SDL_DestroyTexture(screen);
 				screen = SDL_CreateTexture(renderer, pixelFormat, SDL_TEXTUREACCESS_STREAMING,
 					graphicDevice.width, graphicDevice.height);
@@ -471,7 +473,7 @@ void timerMain() {
 		case 0xC002: {
 			if (request.op == read) break;
 			
-			mode = request.data;
+			mode = (byte)request.data;
 
 			switch (mode & 0xF) {
 			case 0b00: timerDevice.frequency = 1000000000; break;	// 1 tick per 1 billion nanoseconds (1 Hz)
@@ -702,14 +704,14 @@ void onPollMain(mobo_t* device) {
 		{
 		case 0x0000: {
 			if (request.op == read) cpu.cores[request.core].regs.rx[request.data] = scuDevice.workingID;
-			else scuDevice.workingID = request.data;
+			else scuDevice.workingID = (byte)request.data;
 
 			request = nullMBRequest;
 			break;
 		}
 		case 0x00C0: {
 			if (request.op == read) return;
-			else scuDevice.command = request.data;
+			else scuDevice.command = (byte)request.data;
 
 			switch (scuDevice.command) {
 			case 0x10: {

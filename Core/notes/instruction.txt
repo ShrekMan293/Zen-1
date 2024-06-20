@@ -23,10 +23,9 @@ push  (0b000101010100) (0x0154)
 pop   (0b000101010101) (0x0155)
 pusha (0b000001000110) (0x0046)
 popa  (0b000001000111) (0x0047)
-popi  (0b000101011000) (0x0158)
-iret  (0b000001001001) (0x0049)
+iret  (0b000001001001) (0x0048)
 
-Conditionals:	// BITS 11 AND 4 VARY DEPENDING ON THE OPERANDS
+Conditionals:	// BIT 11 VARIES DEPENDING ON THE OPERANDS
 jne (0b000101000000) (0x0140)
 jc	(0b000101000001) (0x0141)
 jl	(0b000101000010) (0x0142)
@@ -60,18 +59,11 @@ Bit 5: Read AND Write op2?
 Bit 4: Immediate Value? For Internal Operations it is whether op 2 (data) is register (1) or immediate value (0)
 Bits 3-0: Offset in grouping
 
-Bits 13-12 for IN and OUT, what bit length we are using:
-0b00: 64 Bits
-0b01: 32 Bits
-0b10: 16 Bits
-0b11: 8 Bits
-
 Bits 15-14 for MOV, what bit length we are working with:
 0b00: 64 Bits
 0b01: 32 Bits
 0b10: 16 Bits
 0b11: 8 Bits
-
 
 Bits 13-12 for MOV, what to do with op 2:
 

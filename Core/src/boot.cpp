@@ -1,4 +1,5 @@
 #include "boot.h"
+#include <fstream>
 #include <SDL.h>
 
 int main(int argc, char** argv) {
@@ -25,9 +26,24 @@ int main(int argc, char** argv) {
 	std::string storagePath = std::string(argv[2]);
 	storageDevice.path = storagePath;
 
+	std::ifstream i(storagePath, std::ios::in | std::ios::binary);
+	if (!i.is_open()) {
+		std::cout << "Failed to open [" << storagePath << "]\n";
+		return 1;
+	}
+
+	char* buffer = new char[512];
+	i.read(buffer, 512);
+
 	initMem(memorySize);
-	initCPU();
+	for (size_t i = 0; i < 512; i++)
+	{
+		writeMemory8(0x1000 + i, buffer[i]);
+	}
+	delete[] buffer;
+
 	initComponents();
+	initCPU();
 
 	while (systemState == RUNNING);
 

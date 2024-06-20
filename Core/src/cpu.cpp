@@ -268,26 +268,34 @@ void internalParse(word inst, byte index, byte bitMode) {
 						switch (op1) {
 						case 28: cpu.cores[index].regs.rsp = cpu.cores[index].regs.rx[op2]; break;
 						case 29: cpu.cores[index].regs.rbp = cpu.cores[index].regs.rx[op2]; break;
-						case 30: cpu.cores[index].regs.rf0 = cpu.cores[index].regs.rx[op2]; break;
+						case 30: cpu.cores[index].regs.rf0 = (byte)cpu.cores[index].regs.rx[op2]; break;
 						case 31: cpu.cores[index].regs.rf1 = cpu.cores[index].regs.rx[op2]; break;
 						case 32: cpu.cores[index].regs.rf2 = cpu.cores[index].regs.rx[op2]; break;
-						case 33: cpu.cores[index].regs.rf3 = cpu.cores[index].regs.rx[op2]; break;
+						case 33: cpu.cores[index].regs.rf3 = (byte)cpu.cores[index].regs.rx[op2]; break;
 						default: size_t* registers = new size_t[1];
 							uint64_t* data = new uint64_t[1];
 							registers[0] = 4;
 							data[0] = cpu.cores[index].regs.rpp;
 							createIRQ(index, 0, 0x01, registers, data, 1);
-							break;
+							return;
 						}
 					}
 					else cpu.cores[index].regs.rx[op1] = cpu.cores[index].regs.rx[op2];
 					if (op2 > 27) {
-						size_t* registers = new size_t[1];
-						uint64_t* data = new uint64_t[1];
-						registers[0] = 4;
-						data[0] = cpu.cores[index].regs.rpp;
-						createIRQ(index, 0, 0x01, registers, data, 1);
-						return;
+						switch (op2) {
+						case 28: cpu.cores[index].regs.rsp = cpu.cores[index].regs.rx[op2]; break;
+						case 29: cpu.cores[index].regs.rbp = cpu.cores[index].regs.rx[op2]; break;
+						case 30: cpu.cores[index].regs.rf0 = (byte)cpu.cores[index].regs.rx[op2]; break;
+						case 31: cpu.cores[index].regs.rf1 = cpu.cores[index].regs.rx[op2]; break;
+						case 32: cpu.cores[index].regs.rf2 = cpu.cores[index].regs.rx[op2]; break;
+						case 33: cpu.cores[index].regs.rf3 = (byte)cpu.cores[index].regs.rx[op2]; break;
+						default: size_t* registers = new size_t[1];
+							uint64_t* data = new uint64_t[1];
+							registers[0] = 4;
+							data[0] = cpu.cores[index].regs.rpp;
+							createIRQ(index, 0, 0x01, registers, data, 1);
+							return;
+						}
 					}
 					break;
 				}
@@ -651,7 +659,6 @@ void internalParse(word inst, byte index, byte bitMode) {
 				}
 				break;
 			}
-			case 8:
 			default:
 				size_t* registers = new size_t[1];
 				uint64_t* data = new uint64_t[1];
@@ -928,30 +935,16 @@ void internalParse(word inst, byte index, byte bitMode) {
 				break;
 			}
 			case 9: {
-				if (inst & 0b100000000000) {
-					fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
-					if (op1 > 27) {
-						size_t* registers = new size_t[1];
-						uint64_t* data = new uint64_t[1];
-						registers[0] = 4;
-						data[0] = cpu.cores[index].regs.rpp;
-						createIRQ(index, 0, 0x01, registers, data, 1);
-						return;
-					}
-					cpu.cores[index].regs.rx[op1] = cpu.cores[index].regs.rf3;
+				fetchMemory(cpu.cores[index].regs.rpp++, 1, &op1, 0);
+				if (op1 > 27) {
+					size_t* registers = new size_t[1];
+					uint64_t* data = new uint64_t[1];
+					registers[0] = 4;
+					data[0] = cpu.cores[index].regs.rpp;
+					createIRQ(index, 0, 0x01, registers, data, 1);
+					return;
 				}
-				else {
-					if (bitMode == 64) {
-						fetchMemory(cpu.cores[index].regs.rpp, 8, &op1, 0);
-						cpu.cores[index].regs.rpp += 8;
-						writeMemory8(op1, cpu.cores[index].regs.rf3);
-					}
-					else {
-						fetchMemory(cpu.cores[index].regs.rpp, 4, &op1, 0);
-						cpu.cores[index].regs.rpp += 4;
-						writeMemory8(op1, cpu.cores[index].regs.rf3);
-					}
-				}
+				cpu.cores[index].regs.rx[op1] = cpu.cores[index].regs.rf3;
 				break;
 			}
 			default:
@@ -1021,7 +1014,7 @@ void internalParse(word inst, byte index, byte bitMode) {
 				}
 			}
 		}
-		else if (inst == 0x0009) {	// Interrupt Return
+		else if (inst == 0x0008) {	// Interrupt Return
 			if (bitMode == 64) {
 				fetchMemory(cpu.cores[index].regs.rsp, 8, &cpu.cores[index].regs.rsp, 0);
 				cpu.cores[index].regs.rsp += 8;
@@ -1156,21 +1149,6 @@ bool IRQEqual(interruptRequest i1, interruptRequest i2) {
 void runCore(byte index) {
 	byte bitMode = 64;
 
-	writeMemory16(0x1000, 0x3BC0);
-	writeMemory8(0x1002, 0);
-	writeMemory64(0x1003, 415);
-
-	writeMemory16(0x100B, 0x3BC0);
-	writeMemory8(0x100D, 1);
-	writeMemory64(0x100E, 150);
-
-	writeMemory16(0x1016, 0x0791);
-	writeMemory8(0x1018, 0);
-	writeMemory8(0x1019, 1);
-
-	writeMemory16(0x101A, 0x0951);
-	writeMemory8(0x101C, 0);
-
 	word inst = 0x0000;
 	interruptRequest currentIRQ = nullIRQ;
 
@@ -1206,7 +1184,7 @@ void runCore(byte index) {
 			}
 
 			if (bitMode == 64) writeMemory64(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rpp);
-			else writeMemory32(cpu.cores[index].regs.rsp, cpu.cores[index].regs.rpp);
+			else writeMemory32(cpu.cores[index].regs.rsp, (uint32_t)cpu.cores[index].regs.rpp);
 
 			for (size_t i = 0; i < irq.regCount; i++) {
 				cpu.cores[index].regs.rx[irq.registers[i]] = irq.data[i];
@@ -1239,6 +1217,19 @@ void runCore(byte index) {
 		}
 		else if ((inst & 0x0100) == 0x0100 || (inst & 0x0040) == 0x0040) {
 			internalParse(inst, index, bitMode);
+		}
+		else if (inst == 0x0FFF) {
+			request.core = index;
+			request.gate = 0x0000;
+			request.op = write;
+			request.data = index | 0x10;
+
+			std::this_thread::sleep_for(std::chrono::microseconds(500));
+
+			request.core = index;
+			request.gate = 0xC0;
+			request.op = write;
+			request.data = 0xFF;
 		}
 		else ioParse(inst, index);
 	}
