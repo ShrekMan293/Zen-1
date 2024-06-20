@@ -1,0 +1,25 @@
+{
+  "name": "zasm",
+  "displayName": "ZASM",
+  "description": "Language support for custom asm version ZASM, for my custom CPU Arch https://github.com/ShrekMan293/Zen-1",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "zasm",
+      "aliases": ["ZASM", "zasm"],
+      "extensions": [".asm"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "zasm",
+      "scopeName": "source.zasm",
+      "path": "./syntaxes/zasm.tmLanguage.json"
+    }]
+  }
+}
