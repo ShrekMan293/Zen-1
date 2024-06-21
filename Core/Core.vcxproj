@@ -40,6 +40,7 @@
     <ProjectGuid>{8f7ef4c3-cd4c-4686-a279-11628e030193}</ProjectGuid>
     <RootNamespace>Core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Zen-1</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
