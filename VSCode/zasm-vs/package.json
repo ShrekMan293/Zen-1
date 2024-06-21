@@ -2,9 +2,9 @@
   "name": "zasm-assembly-vs",
   "publisher": "ShrekMan293",
   "displayName": "ZASM Language Support by ShrekMan293",
-  "description": "Language support for Zen-I Assembly: https://github.com/ShrekMan293/Zen-I",
-  "repository": {"url": "https://github.com/ShrekMan293/Zen-I"},
-  "version": "1.0.0",
+  "description": "Language support for Zen-I Assembly: https://github.com/ShrekMan293/Zen-1",
+  "repository": {"url": "https://github.com/ShrekMan293/Zen-1"},
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.90.0"
   },
