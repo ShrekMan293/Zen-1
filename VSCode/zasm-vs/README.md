@@ -1,7 +1,7 @@
 # zasm-vs README
 
 This is language support for my custom assembly language based on my custom architecture located at
-https://github.com/ShrekMan293/Zen-I
+https://github.com/ShrekMan293/Zen-1
 
 ## Features
 
@@ -27,6 +27,13 @@ Not that I know of, testing is just beginning
 Initial release of ZASM
 
 Basic syntax highlighting
+
+### 1.0.1
+Same as 1.0.0
+
+### 1.0.2
+
+Edit README, had a bad link, which is what I meant to do in 1.0.1
 
 # License
 MIT License can be found in the Zen-I repository
