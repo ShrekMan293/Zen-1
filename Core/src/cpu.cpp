@@ -1151,13 +1151,16 @@ void runCore(byte index) {
 
 	word inst = 0x0000;
 	interruptRequest currentIRQ = nullIRQ;
+	byte instructionCount = 0;
 
 	while (cpu.cores[index].power == RUNNING) {
+		while (cpu.cores[index].pause);
+		if (cpu.cores[index].stepi) instructionCount++;
+
 		if ((cpu.cores[index].regs.rf0 & 0x3) == 3) bitMode = 32;
 		else bitMode = 64;
 
 		if (!IRQEqual(currentIRQ, nullIRQ) && irq.core == index) {
-
 			for (size_t i = 0; i < 28; i++)
 			{
 				if (bitMode == 64) {
@@ -1232,6 +1235,12 @@ void runCore(byte index) {
 			request.data = 0xFF;
 		}
 		else ioParse(inst, index);
+
+		if (cpu.cores[index].stepi) {
+			instructionCount = 0;
+
+			while (cpu.cores[index].stepi && cpu.cores[index].pause);
+		}
 	}
 }
 

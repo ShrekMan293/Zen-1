@@ -285,12 +285,7 @@ void tokenizeIdentifier() {
 	case 'p': {
 		string lexeme = string(t.lexeme);
 		std::transform(lexeme.begin(), lexeme.end(), lexeme.begin(), ::tolower);
-		if (string(t.lexeme) == "panic") {
-			t.type = TT_PANIC;
-			addToken(t);
-			break;
-		}
-		else if (string(t.lexeme) == "pop") {
+		if (string(t.lexeme) == "pop") {
 			t.type = TT_POP;
 			addToken(t);
 			break;
@@ -460,6 +455,7 @@ void tokenizeSymbol() {
 	case '\'': makeCharToken(); break;
 	case ':': makeToken(TT_COLON); break;
 	case '[': makeToken(TT_LBRACKET); break;
+ case ';': while (current() != '\n' && current() != '\0') advance(); break;
 	case ']': makeToken(TT_RBRACKET); break;
 	case ',': makeToken(TT_COMMA); break;
 	case '$': makeToken(TT_CURRENT); break;

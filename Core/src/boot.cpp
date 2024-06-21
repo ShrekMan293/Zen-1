@@ -173,6 +173,44 @@ int main(int argc, char** argv) {
 				if (i % 7 == 0) std::cout << '\n';
 			}
 		}
+		else if (data == "pause") {
+			cpu.cores[0].pause = true;
+			cpu.cores[1].pause = true;
+			cpu.cores[2].pause = true;
+			cpu.cores[3].pause = true;
+			cpu.cores[4].pause = true;
+			cpu.cores[5].pause = true;
+			cpu.cores[6].pause = true;
+			cpu.cores[7].pause = true;
+		}
+		else if (data == "stepi") {
+			cpu.cores[0].stepi = true;
+			cpu.cores[1].stepi = true;
+			cpu.cores[2].stepi = true;
+			cpu.cores[3].stepi = true;
+			cpu.cores[4].stepi = true;
+			cpu.cores[5].stepi = true;
+			cpu.cores[6].stepi = true;
+			cpu.cores[7].stepi = true;
+		}
+		else if (data == "c") {
+			cpu.cores[0].pause = false;
+			cpu.cores[1].pause = false;
+			cpu.cores[2].pause = false;
+			cpu.cores[3].pause = false;
+			cpu.cores[4].pause = false;
+			cpu.cores[5].pause = false;
+			cpu.cores[6].pause = false;
+			cpu.cores[7].pause = false;
+			cpu.cores[0].stepi = false;
+			cpu.cores[1].stepi = false;
+			cpu.cores[2].stepi = false;
+			cpu.cores[3].stepi = false;
+			cpu.cores[4].stepi = false;
+			cpu.cores[5].stepi = false;
+			cpu.cores[6].stepi = false;
+			cpu.cores[7].stepi = false;
+		}
 	}
 
 	delete[] cpu.cpu_threads;

@@ -22,6 +22,8 @@ struct CPU_State {
 	byte cpuid;
 	mobo_t component;
 	interruptRequest irq_stack[16];
+	bool pause;
+	bool stepi;
 };
 
 
