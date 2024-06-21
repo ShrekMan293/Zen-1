@@ -35,6 +35,15 @@ Same as 1.0.0
 
 Edit README, had a bad link, which is what I meant to do in 1.0.1
 
+### 1.1.0
+
+Just edited themes, simplified it
+Bugs: Register coloring not fully working
+
+### 1.1.1
+
+Fixed register bug
+
 # License
 MIT License can be found in the Zen-I repository
 

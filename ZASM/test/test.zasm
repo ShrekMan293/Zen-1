@@ -2,11 +2,8 @@ bits 64
 section .code
 
 nras:
-	add rx1, rx2
+	movq rx2, 27
+	movq rx1, 40
+	add rx2, rx1
+	
 	jmp $
-	jmp 0x20
-	jmp 0b01
-
-	'aswndlncne'
-
-	; Comment
