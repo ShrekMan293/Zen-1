@@ -187,7 +187,6 @@ void parseCurrent() {
 	case TT_STI:
 	case TT_PUSHA:
 	case TT_POPA:
-	case TT_PANIC:
 	case TT_IRET: parseNoOperand(); break;
 	case TT_SECTION: parseSection(); break;
 	case TT_BITS: parseBits(); break;
