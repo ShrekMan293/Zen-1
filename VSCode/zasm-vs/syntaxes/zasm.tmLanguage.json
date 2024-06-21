@@ -1,0 +1,75 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ZASM",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#instructions"
+		},
+		{
+			"include": "#symbols"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [{
+				"name": "comment.line.zasm",
+				"begin": ";",
+				"end": "\\n"
+			}]
+		},
+		"instructions": {
+			"patterns": [{
+				"name": "instruction.control.zasm",
+				"match": "(?i)\\b(ADD|SUB|MUL|DIV|SHL|SHR|AND|OR|NOT|NOR|XOR|CMP|MOVB|MOVW|MOVD|MOVQ|JMP|CALL|RET|PUSH|POP|PUSHA|POPA|IRET|JNE|JC|JL|JLE|JG|JGE|JO|JE|JNC|RFL|NOP|IN|OUT|INT|HLT|CLI|STI|SECTION|BITS|EQU)\\b"
+			}]
+		},
+		"symbols": {
+			"patterns": [{
+				"name": "symbol.control.zasm",
+				"match": "(?i)\\brx[0-27]+\\b"
+			},
+			{
+				"name": "symbol.control.zasm",
+				"match": "(?i)\\b(RSP|RBP)\\b"
+			},
+			{
+				"name": "symbol.control.zasm",
+				"match": "(?i)\\brf[0-3]+\\b"
+			},
+			{
+				"name": "symbol.control.zasm",
+				"match": "\\$(?!\\d)"
+			}]
+		},
+		"numbers": {
+			"patterns": [{
+				"name": "constant.numeric.zasm",
+				"match": "\\b\\d+\\b"
+			},
+			{
+				"name": "constant.numeric.zasm",
+				"match": "\\b0b[01]+\\b"
+			},
+			{
+				"name": "constant.numeric.zasm",
+				"match": "\\b0x[0-9a-fA-f]+\\b"
+			}
+		]
+		},
+		"strings": {
+			"name": "string.quoted.single.zasm",
+			"begin": "'",
+			"end": "'"
+		}
+	},
+	"scopeName": "source.zasm"
+}

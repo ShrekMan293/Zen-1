@@ -1,0 +1,45 @@
+{
+    "name": "ZASM Theme",
+    "type": "dark",
+    "colors": {
+        "editor.background": "#1e1e1e",
+        "editor.foreground": "#d4d4d4",
+        "editorCursor.foreground": "#d4d4d4",
+        "editor.lineHighlightBackground": "#333333",
+        "editorLineNumber.foreground": "#858585",
+        "editor.selectionBackground": "#264F78",
+        "editor.inactiveSelectionBackground": "#3a3d41"
+    },
+    "tokenColors": [
+        {
+            "scope": "comment.line.zasm",
+            "settings": {
+                "foreground": "#6a9955"
+            }
+        },
+        {
+            "scope": "instruction.control.zasm",
+            "settings": {
+                "foreground": "#c586c0" 
+            }
+        },
+        {
+            "scope": "symbol.control.zasm",
+            "settings": {
+                "foreground": "#569cd6"
+            }
+        },
+        {
+            "scope": "constant.numeric.zasm",
+            "settings": {
+                "foreground": "#b5cea8"
+            }
+        },
+        {
+            "scope": "string.quoted.single.zasm",
+            "settings": {
+                "foreground": "#ce9178"
+            }
+        }
+    ]
+}

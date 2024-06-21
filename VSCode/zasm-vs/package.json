@@ -1,0 +1,32 @@
+{
+  "name": "zasm-vs",
+  "publisher": "ShrekMan293",
+  "displayName": "ZASM Language Support",
+  "description": "Language support for Zen-I Assembly: https://github.com/ShrekMan293/Zen-I",
+  "repository": {"url": "https://github.com/ShrekMan293/Zen-I"},
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "zasm",
+      "aliases": ["ZASM", "zasm"],
+      "extensions": [".zasm",".asm"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "zasm",
+      "scopeName": "source.zasm",
+      "path": "./syntaxes/zasm.tmLanguage.json"
+    }],
+    "themes": [{
+      "id": "zasm",
+      "uiTheme": "vs-dark",
+      "path": "./themes/zasm-color-themes.json"
+    }]
+  }
+}
