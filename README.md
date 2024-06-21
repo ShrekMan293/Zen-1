@@ -10,3 +10,12 @@ I suggest using a playstation controller for
 input
 
 ### DO NOT. I REPEAT DO NOT USE THIS RIGHT NOW. IT WILL CRASH YOUR COMPUTER. CURRENTLY TRYING TO FIX IT
+
+
+### PROJECT DISCONTINUED
+Anybody reading this, the project is very buggy
+and has been discontinued, I doubt anyone
+will even read this, but if you are interested
+proceed with caution.
+
+Could crash your computer
