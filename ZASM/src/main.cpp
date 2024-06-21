@@ -6,7 +6,7 @@
 
 int main(int argc, char** argv) {
 	if (argc != 3) {
-		cout << "Usage: [Zasm] [srcFile] [binFile]\n";
+		cout << "Usage: [zasm] [srcFile] [binFile]\n";
 		return 1;
 	}
 
